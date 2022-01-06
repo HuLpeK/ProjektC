@@ -75,7 +75,7 @@ void select_menu()
     }
 
     int wybor;
-    scanf("%d", &wybor);a
+    scanf("%d", &wybor);
 }
 
 int main(int argc, const char * argv[]) {
