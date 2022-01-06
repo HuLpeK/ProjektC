@@ -5,19 +5,7 @@
 //  Created by Hubert Kulpaczyński on 06/01/2022.
 //
 
-#include "DataHandler.h"
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdbool.h>
-
-typedef struct Dejt
-{
-    int Rok;
-    int Miesiac;
-    int Dni;
-} Dejt;
-
+#include "DateHandler.h"
 
 
 bool isLeap(int year)
@@ -25,12 +13,7 @@ bool isLeap(int year)
     return (!(year % 4) && year % 100) || !(year % 400);
 }
 
-int max(int a, int b)
-{
-    if(a>b)
-        return a;
-    return b;
-}
+
 Dejt DataToUnix(int Dni)
 {
     Dejt x = {1970,1,1};
@@ -55,14 +38,7 @@ Dejt DataToUnix(int Dni)
             Dni -= MO_LEN[i];
     }
     
-    x.Dni += Dni;
+    x.Dzien += Dni;
     
     return x;
-}
-
-
-int main(void)
-{
-    Dejt pomoc = DataToUnix(1);
-    printf("%d %d %d", pomoc.Rok, pomoc.Miesiac, pomoc.Dni);
 }

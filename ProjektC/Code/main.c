@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "Header.h"
+
 int START_Header = 0;
 char* sciezka_zapisu;
 void INIT(const char slowo[])
@@ -31,6 +33,11 @@ void INIT(const char slowo[])
 int main(int argc, const char * argv[]) {
     
     INIT(argv[1]);
+    
+    Dejt x;
+    x = DataToUnix(354);
+    printf("%d %d %d", x.Rok, x.Miesiac, x.Dzien);
+    exit(0);
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     
     printf("[0]: <Dodaj Użytkownika>\n");
@@ -67,7 +74,6 @@ int main(int argc, const char * argv[]) {
             printf("Blad Tworzenia Nowego Uzytkownika!!!");
             exit(0);
         }
-        
         
             
     }
