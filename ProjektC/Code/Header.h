@@ -11,8 +11,9 @@
 #include "./Handlers/DateHandler.h"
 #include "./Handlers/DataHandler.h"
 
-void INIT(const char slowo[]);
+void INIT(const char * slowo[]);
 void get_user(const char path[], char** user);
+void add_user(char* user, int index);
 
 
 #endif /* Header_h */

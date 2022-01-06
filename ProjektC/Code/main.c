@@ -15,10 +15,12 @@
 
 int START_Header = 0;
 char* sciezka_zapisu;
-char uzytkownicy[256][256];
+char* uzytkownicy[256];
+int number_of_users;
+
 void INIT(const char* slowo[])
 {
-    for(int i = 0; slowo[i] != '\0'; i++)
+    for(int i = 0; slowo[1][i] != '\0'; i++)
         if(slowo[1][i] == '/')
             START_Header = i+1;
     
@@ -26,12 +28,29 @@ void INIT(const char* slowo[])
     sciezka_zapisu = realloc(sciezka_zapisu, (START_Header)* sizeof(char));
     
     for(int i = 0; i < START_Header; i++)
-        sciezka_zapisu[i] = slowo[i];
+        sciezka_zapisu[i] = slowo[1][i];
     
     sciezka_zapisu[START_Header] = '\0';
     
+    for(int i = 1; i < number_of_users; i++)
+    {
+        char* help;
+        get_user(slowo[i], &help);
+        add_user(help, i);
+    }
+        
     
 }
+
+void add_user(char* user, int index)
+{
+    if(index >= number_of_users)
+        number_of_users++;
+    char* tmp = (char*)calloc(strlen(user), sizeof(char));
+    strcpy(tmp,user);
+    uzytkownicy[index] = tmp;
+}
+
 
 void get_user(const char path[], char** user)
 {
@@ -40,29 +59,31 @@ void get_user(const char path[], char** user)
     for(int i = START_Header; path[i] != '\0'; i++)
         help[wskaznik++] = path[i];
     *user = help;
-
 }
+
+
 void select_menu()
 {
-    
-}
-
-int main(int argc, const char * argv[]) {
-    
-    INIT(argv);
-
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     
     printf("[0]: <Dodaj Użytkownika>\n"); // Stworz To do select_menu
-    for(int i = 1; i < argc; i++)
+    for(int i = 1; i < number_of_users; i++)
     {
         printf("[%d]: ", i);
         
-        char* X;
-        get_user(argv[i], &X);
-        printf("%s \n", X);
-    
+        printf("%s \n", uzytkownicy[i]);
     }
+
+    int wybor;
+    scanf("%d", &wybor);a
+}
+
+int main(int argc, const char * argv[]) {
+    number_of_users = argc;
+    INIT(argv);
+
+    
+    select_menu();
     
     
     int wybor;
