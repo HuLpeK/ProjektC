@@ -1,3 +1,3 @@
 ./build.sh
 
-./ProjektC/Code/main ProjektC/Saves/*
+./ProjektC/Code/main.o ProjektC/Saves/*
