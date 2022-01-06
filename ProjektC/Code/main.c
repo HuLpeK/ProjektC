@@ -10,12 +10,15 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include "Header.h"
 
+#define TIMEOUT_TIME 5
+
 int START_Header = 0;
 char* sciezka_zapisu;
-char* uzytkownicy[256];
+char* uzytkownicy[256]; // w [0] trzymamy wielkosc tablicy
 int number_of_users;
 
 void INIT(const char* slowo[])
@@ -64,8 +67,9 @@ void get_user(const char path[], char** user)
 
 void select_menu()
 {
+    system("clear");
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
-    
+    printf("[-1]: <Usuń Użytkownika>\n");
     printf("[0]: <Dodaj Użytkownika>\n"); // Stworz To do select_menu
     for(int i = 1; i < number_of_users; i++)
     {
@@ -76,6 +80,51 @@ void select_menu()
 
     int wybor;
     scanf("%d", &wybor);
+    
+    if(wybor == 0)
+        Create_user();
+   
+    
+}
+
+void Create_user()
+{
+    system("clear");
+    printf("Podaj nazwe nowego użytkownika (Mozesz uzyc maksymalnie 256 znakow!)\n");
+    char user[256];
+    
+    scanf("\n%[^\n]%*c", user);
+    
+    for(int i = 1; i < number_of_users; i++)
+    {
+        if(strcmp(uzytkownicy[i],user) == 0)
+        {
+            printf("Blad! Uzytkownik juz istnieje!\n");
+            for(int i = TIMEOUT_TIME; i > 0; i--)
+            {
+                printf("Powrot do Menu Glownego za: %d\n", i);
+                sleep(1);
+            }
+            select_menu();
+        }
+            
+    }
+        
+    char user_path[strlen(sciezka_zapisu) + strlen(user)];
+    strcpy(user_path,sciezka_zapisu);
+    strcat(user_path, user);
+    
+    mkdir(sciezka_zapisu, 0777);
+    FILE *fp = fopen(user_path, "w+"); // DEBUG
+    
+    if(fp == NULL)
+    {
+        printf("Blad Tworzenia Nowego Uzytkownika!!!");
+        exit(0);
+    }
+    add_user(user, number_of_users);
+    select_menu();
+    
 }
 
 int main(int argc, const char * argv[]) {
@@ -86,33 +135,5 @@ int main(int argc, const char * argv[]) {
     select_menu();
     
     
-    int wybor;
-    scanf("%d", &wybor);
-    
-    if(wybor == 0) // SPRAWDZ czy jak dodajesz plik to taki nie istnieje!
-    {
-        printf("Podaj nazwe nowego użytkownika (Mozesz uzyc maksymalnie 256 znakow!)\n");
-        char user[256];
-        
-        scanf("\n%[^\n]%*c", user);
-        
-			
-        char user_path[strlen(sciezka_zapisu) + strlen(user)];
-        strcpy(user_path,sciezka_zapisu);
-        strcat(user_path, user);
-        
-        mkdir(sciezka_zapisu, 0777);
-        FILE *fp = fopen(user_path, "w+");
-        
-        if(fp == NULL)
-        {
-            printf("Blad Tworzenia Nowego Uzytkownika!!!");
-            exit(0);
-        }
-        printf("%s", user_path);
-            
-    }
-    
-    ///
     return 0;
 }
