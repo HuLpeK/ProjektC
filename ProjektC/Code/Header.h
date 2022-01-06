@@ -14,6 +14,7 @@
 void INIT(const char * slowo[]);
 void get_user(const char path[], char** user);
 void add_user(char* user, int index);
+void select_menu();
 
 
 #endif /* Header_h */
