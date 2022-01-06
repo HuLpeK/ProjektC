@@ -34,8 +34,9 @@ void INIT(const char slowo[])
 void get_user(const char path[], char** user)
 {
     char* help = (char*)calloc(strlen(path)-START_Header, sizeof(char));
+    int wskaznik = 0;
     for(int i = START_Header; path[i] != '\0'; i++)
-        help[i] = path[i];
+        help[wskaznik++] = path[i];
     *user = help;
 
 }
