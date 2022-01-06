@@ -45,22 +45,18 @@ void get_user(const char path[], char** user)
 int main(int argc, const char * argv[]) {
     
     INIT(argv[1]);
-    char* X;
-    get_user(argv[2], &X);
-    for(int i = 0; X[i] != '\0'; i++)
-        putchar(X[i]);
-    
-    exit(0);
-    
+
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     
     printf("[0]: <Dodaj Użytkownika>\n"); // Stworz To do select_menu
     for(int i = 1; i < argc; i++)
     {
         printf("[%d]: ", i);
-        for(int j = START_Header;  argv[i][j] != '\0'; j++)
-            putchar(argv[i][j]);
-        putchar('\n');
+        
+        char* X;
+        get_user(argv[i], &X);
+        printf("%s \n", X);
+    
     }
     
     
