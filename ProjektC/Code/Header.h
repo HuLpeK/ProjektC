@@ -12,7 +12,7 @@
 #include "./Handlers/DataHandler.h"
 
 void INIT(const char slowo[]);
-
+void get_user(const char path[], char** user);
 
 
 #endif /* Header_h */

@@ -16,10 +16,10 @@
 int START_Header = 0;
 char* sciezka_zapisu;
 char uzytkownicy[256][256];
-void INIT(const char slowo[])
+void INIT(const char* slowo[])
 {
     for(int i = 0; slowo[i] != '\0'; i++)
-        if(slowo[i] == '/')
+        if(slowo[1][i] == '/')
             START_Header = i+1;
     
     
@@ -29,6 +29,8 @@ void INIT(const char slowo[])
         sciezka_zapisu[i] = slowo[i];
     
     sciezka_zapisu[START_Header] = '\0';
+    
+    
 }
 
 void get_user(const char path[], char** user)
@@ -40,11 +42,14 @@ void get_user(const char path[], char** user)
     *user = help;
 
 }
-
+void select_menu()
+{
+    
+}
 
 int main(int argc, const char * argv[]) {
     
-    INIT(argv[1]);
+    INIT(argv);
 
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     
