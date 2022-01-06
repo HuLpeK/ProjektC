@@ -13,16 +13,16 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-typedef struct Dejt
+typedef struct Date
 {
     int Rok;
     int Miesiac;
     int Dzien;
-} Dejt;
+} Date;
 
 bool isLeap(int year);
 
-Dejt DataToUnix(int Dni);
+Date DataToUnix(int Dni);
 
 
 #endif /* DataHandler_h */

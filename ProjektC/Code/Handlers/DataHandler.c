@@ -10,11 +10,17 @@
 
 void Create_DateFile(char* user_path)
 {
-    fopen(
+    int x = -1;
 }
 
-void Create(char* user_path)
+void Create_EventFile(char* user_path)
 {
-    Create_DateFile(user_path);
-    
+    int x = -1;
+
+}
+
+void CreateUser(char* user_path)
+{
+    int x = -1;
+
 }

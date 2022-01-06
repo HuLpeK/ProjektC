@@ -14,9 +14,9 @@ bool isLeap(int year)
 }
 
 
-Dejt DataToUnix(int Dni)
+Date DataToUnix(int Dni)
 {
-    Dejt x = {1970,1,1};
+    Date x = {1970,1,1};
    
     
 //

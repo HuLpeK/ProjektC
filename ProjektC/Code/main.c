@@ -34,10 +34,6 @@ int main(int argc, const char * argv[]) {
     
     INIT(argv[1]);
     
-    Dejt x;
-    x = DataToUnix(354);
-    printf("%d %d %d", x.Rok, x.Miesiac, x.Dzien);
-    exit(0);
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     
     printf("[0]: <Dodaj Użytkownika>\n");
@@ -63,8 +59,6 @@ int main(int argc, const char * argv[]) {
         char user_path[strlen(sciezka_zapisu) + strlen(user)];
         strcpy(user_path,sciezka_zapisu);
         strcat(user_path, user);
-        
-        printf("%s", user_path);
         
         mkdir(sciezka_zapisu, 0777);
         FILE *fp = fopen(user_path, "w+");
