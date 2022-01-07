@@ -15,10 +15,11 @@
 #include "Header.h"
 
 #define TIMEOUT_TIME 5
+#define MAX_USER 256
 
 int START_Header = 0;
 char* sciezka_zapisu;
-char* uzytkownicy[256]; // w [0] trzymamy wielkosc tablicy
+char* uzytkownicy[MAX_USER]; // w [0] trzymamy wielkosc tablicy
 int number_of_users;
 
 void INIT(const char* slowo[])
@@ -81,6 +82,7 @@ void select_menu()
     int wybor;
     scanf("%d", &wybor);
     
+    
     if(wybor == 0)
         Create_user();
    
@@ -90,8 +92,8 @@ void select_menu()
 void Create_user()
 {
     system("clear");
-    printf("Podaj nazwe nowego użytkownika (Mozesz uzyc maksymalnie 256 znakow!)\n");
-    char user[256];
+    printf("Podaj nazwe nowego użytkownika (Mozesz uzyc maksymalnie %d znakow!)\n", MAX_USER-1);
+    char user[MAX_USER];
     
     scanf("\n%[^\n]%*c", user);
     
