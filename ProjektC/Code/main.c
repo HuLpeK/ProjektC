@@ -18,7 +18,7 @@
 #define MAX_USER 256
 
 int START_Header = 0;
-char* sciezka_zapisu;
+char* sciezka_zapisu; //PREFIX do folderu SAVES
 char* uzytkownicy[MAX_USER]; // w [0] trzymamy wielkosc tablicy
 int number_of_users;
 
@@ -116,12 +116,20 @@ void Create_user()
     strcpy(user_path,sciezka_zapisu);
     strcat(user_path, user);
     
-    mkdir(sciezka_zapisu, 0777);
-    FILE *fp = fopen(user_path, "w+"); // DEBUG
+    
+    mkdir(user_path, 0777);
+    
+    printf("%s %s\n", sciezka_zapisu, user_path);
+    char used_path[strlen(user_path) + strlen(user)];
+    strcpy(used_path, user_path);
+    strcat(used_path, "/tst");
+    
+    FILE *fp = fopen(used_path, "w+"); // DEBUG
     
     if(fp == NULL)
     {
         printf("Blad Tworzenia Nowego Uzytkownika!!!");
+//        del_user(user_path);
         exit(0);
     }
     add_user(user, number_of_users);
