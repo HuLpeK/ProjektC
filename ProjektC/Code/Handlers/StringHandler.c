@@ -21,5 +21,6 @@ char* itoa(int X, char* a) ///ZWOLNIC Pamiec z a
    char* tmp = calloc(nDigits, sizeof(char));
    sprintf(tmp, "%d", X);
    a = tmp;
+    
    return a;
 }

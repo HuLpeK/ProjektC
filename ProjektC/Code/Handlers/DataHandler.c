@@ -11,6 +11,7 @@
 void Create_DateFile(char* user_path)
 {
     int x = -1;
+    
 }
 
 void Create_EventFile(char* user_path)

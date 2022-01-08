@@ -9,5 +9,9 @@
 #define CreateFileHandler_h
 
 #include <stdio.h>
+#include "StringHandler.h"
+
+void CreateFile_Events(char* Path);
+
 
 #endif /* CreateFileHandler_h */

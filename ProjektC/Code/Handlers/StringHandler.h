@@ -11,5 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+
+
+char* itoa(int X, char* a);
 
 #endif /* StringHandler_h */
