@@ -10,6 +10,7 @@
 
 #include "./Handlers/DateHandler.h"
 #include "./Handlers/DataHandler.h"
+#include "./Handlers/StringHandler.h"
 
 void INIT(const char * slowo[]);
 void get_user(const char path[], char** user);
