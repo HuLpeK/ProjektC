@@ -19,5 +19,5 @@ void add_user(char* user, int index);
 void select_menu();
 void Create_user();
 void DelUser_Menu();
-
+void DelArr_User(int X);
 #endif /* Header_h */

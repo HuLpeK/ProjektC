@@ -15,5 +15,6 @@
 
 
 char* itoa(int X, char* a);
+char* itoaDynamic(int X, char* a);
 
 #endif /* StringHandler_h */

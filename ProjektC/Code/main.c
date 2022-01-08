@@ -64,6 +64,16 @@ void get_user(const char path[], char** user)
     *user = help;
 }
 
+void DelArr_User(int X)
+{
+    int size = number_of_users-1;
+    for(int i = X; i < size; i++)
+        strcpy(uzytkownicy[i], uzytkownicy[i+1]);
+    
+//    uzytkownicy[0] = itoa(size-1, uzytkownicy[0]);
+    number_of_users--;
+}
+
 void DelUser_Menu()
 {
     system("clear");
@@ -82,8 +92,10 @@ void DelUser_Menu()
         char path[strlen(sciezka_zapisu) + strlen(uzytkownicy[wybor])];
         strcpy(path, sciezka_zapisu);
         strcat(path, uzytkownicy[wybor]);
-//        strcat(path, "\Events");
-        DelUser(path);
+
+        DelFile_User(path);
+        DelArr_User(wybor);
+        select_menu();
     }
     
 }
@@ -143,9 +155,7 @@ void Create_user()
     strcpy(user_path,sciezka_zapisu);
     strcat(user_path, user);
     
-    printf("User Path: %s\n", user_path);
     mkdir(user_path, 0777);
-    getchar();
     
 //    printf("%s %s\n", sciezka_zapisu, user_path);
     char used_path[strlen(user_path) + strlen(user)];
@@ -170,6 +180,7 @@ void Create_user()
 
 int main(int argc, const char * argv[]) {
     number_of_users = argc;
+    printf("%d    ", number_of_users);
     INIT(argv);
     
     select_menu();

@@ -13,6 +13,6 @@
 #include "StringHandler.h"
 
 void CreateFile_Events(char* Path);
-void DelUser(char Path[]);
+void DelFile_User(char Path[]);
 
 #endif /* CreateFileHandler_h */

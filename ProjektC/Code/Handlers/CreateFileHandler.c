@@ -7,21 +7,15 @@
 
 #include "CreateFileHandler.h"
 
-char* Pliki[] ={"Events", "-1"};
 
-void DelUser(char Path[])
+void DelFile_User(char Path[])
 {
-//    printf("%s ", Path);
-//    strcat(Path, Pliki[0]);
-//    int check = rmdir(Path);
-//    if(check)
-//        printf("Nie udalo sie usunac użytkownika");
-    
+
     char X[strlen(Path)];
     strcpy(X, "rm -r ");
     strcat(X, Path);
     system(X);
-    getchar();
+
     
 }
 
