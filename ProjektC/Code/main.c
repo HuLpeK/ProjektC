@@ -44,10 +44,7 @@ void INIT(const char* slowo[])
         get_user(slowo[i], &help);
         add_user(help, i);
     }
-        
-    
 }
-
 void add_user(char* user, int index)
 {
     if(index >= number_of_users)
