@@ -18,6 +18,6 @@ void get_user(const char path[], char** user);
 void add_user(char* user, int index);
 void select_menu();
 void Create_user();
-
+void DelUser_Menu();
 
 #endif /* Header_h */
