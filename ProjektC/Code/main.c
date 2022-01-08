@@ -22,6 +22,8 @@ char* sciezka_zapisu; //PREFIX do folderu SAVES
 char* uzytkownicy[MAX_USER]; // w [0] trzymamy wielkosc tablicy
 int number_of_users;
 
+
+
 void INIT(const char* slowo[])
 {
     for(int i = 0; slowo[1][i] != '\0'; i++)
@@ -137,13 +139,13 @@ void Create_user()
     
 }
 
+
+
 int main(int argc, const char * argv[]) {
     number_of_users = argc;
     INIT(argv);
-
     
     select_menu();
-    
-    
+       
     return 0;
 }
