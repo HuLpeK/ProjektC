@@ -74,7 +74,7 @@ void DelArr_User(int X)
 {
     int size = UsersList.number_of_users;
     for(int i = X; i < size; i++)
-        strcpy(uzytkownicy[i], uzytkownicy[i+1]);
+        strcpy(UsersList.uzytkownicy[i], UsersList.uzytkownicy[i+1]);
     
 //    uzytkownicy[0] = itoa(size-1, uzytkownicy[0]);
     UsersList.number_of_users--;
