@@ -11,12 +11,10 @@
 void DelFile_User(char Path[])
 {
 
-    char X[strlen(Path)];
+    char X[strlen(Path)+10];
     strcpy(X, "rm -r ");
     strcat(X, Path);
     system(X);
-
-    
 }
 
 void CreateFile_Events(char Path[])
@@ -24,7 +22,7 @@ void CreateFile_Events(char Path[])
     char pom[strlen(Path)];
     strcpy(pom, Path);
     strcat(pom, "Events");
-    FILE* fp = fopen(pom, "w+");
+    FILE* fp = fopen(pom, "a+");
     
     if(fp == NULL)
     {
@@ -38,4 +36,28 @@ void CreateFile_Events(char Path[])
         fprintf(fp, "%s;", tab[i]);
     
     fclose(fp);
+}
+
+void CreateFile_Date(char Path[])
+{
+    char pom[strlen(Path)];
+    strcpy(pom, Path);
+    strcat(pom, "Date");
+    FILE* fp = fopen(pom, "a+");
+    
+    if(fp == NULL)
+    {
+        printf("Blad Tworzenia Pliku %s\n", pom);
+        rmdir(Path);
+        exit(0);
+    }
+    fprintf(fp, "xD");
+    
+    fclose(fp);
+}
+
+void CreateFiles(char Path[])
+{
+    CreateFile_Events(Path);
+    CreateFile_Date(Path);
 }

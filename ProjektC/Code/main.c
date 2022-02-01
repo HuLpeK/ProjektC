@@ -176,11 +176,12 @@ void Create_user()
 ////        del_user(user_path);
 //        exit(0);
 //    }
-    CreateFile_Events(used_path);
+    CreateFiles(used_path);
     add_user(user, UsersList.number_of_users);
     select_menu();
     
 }
+
 
 
 

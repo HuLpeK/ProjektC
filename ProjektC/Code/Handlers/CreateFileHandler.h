@@ -16,5 +16,8 @@
 
 void CreateFile_Events(char* Path);
 void DelFile_User(char Path[]);
+void CreateFiles(char Path[]);
+void CreateFile_Date(char Path[]);
+
 
 #endif /* CreateFileHandler_h */
