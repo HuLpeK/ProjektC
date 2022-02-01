@@ -18,10 +18,15 @@
 #define MAX_USER 256
 
 int START_Header = 0;
-char* sciezka_zapisu; //PREFIX do folderu SAVES
-char* uzytkownicy[MAX_USER]; // w [0] trzymamy wielkosc tablicy
-int number_of_users;
+char* sciezka_zapisu; //PREFIX do folderu SAVES/
 
+
+struct Users{
+    int number_of_users;
+    char* uzytkownicy[MAX_USER];
+};
+
+struct Users UsersList;
 
 
 void INIT(const char* slowo[])
@@ -38,20 +43,21 @@ void INIT(const char* slowo[])
     
     sciezka_zapisu[START_Header] = '\0';
     
-    for(int i = 1; i < number_of_users; i++)
+    for(int i = 1; i < UsersList.number_of_users; i++)
     {
         char* help;
         get_user(slowo[i], &help);
         add_user(help, i);
     }
 }
+
 void add_user(char* user, int index)
 {
-    if(index >= number_of_users)
-        number_of_users++;
+    if(index >= UsersList.number_of_users)
+        UsersList.number_of_users++;
     char* tmp = (char*)calloc(strlen(user), sizeof(char));
     strcpy(tmp,user);
-    uzytkownicy[index] = tmp;
+    UsersList.uzytkownicy[index] = tmp;
 }
 
 
@@ -66,12 +72,12 @@ void get_user(const char path[], char** user)
 
 void DelArr_User(int X)
 {
-    int size = number_of_users-1;
+    int size = UsersList.number_of_users;
     for(int i = X; i < size; i++)
         strcpy(uzytkownicy[i], uzytkownicy[i+1]);
     
 //    uzytkownicy[0] = itoa(size-1, uzytkownicy[0]);
-    number_of_users--;
+    UsersList.number_of_users--;
 }
 
 void DelUser_Menu()
@@ -79,8 +85,8 @@ void DelUser_Menu()
     system("clear");
     printf("Podaj Numer Użytkownika Do usunięcia\n");
     printf("[0] <Wroc do Menu>\n");
-    for(int i = 1; i < number_of_users; i++)
-        printf("[%d]: %s\n", i, uzytkownicy[i]);
+    for(int i = 1; i < UsersList.number_of_users; i++)
+        printf("[%d]: %s\n", i, UsersList.uzytkownicy[i]);
     
     int wybor;
     scanf("%d", &wybor);
@@ -89,9 +95,9 @@ void DelUser_Menu()
         select_menu();
     else
     {
-        char path[strlen(sciezka_zapisu) + strlen(uzytkownicy[wybor])];
+        char path[strlen(sciezka_zapisu) + strlen(UsersList.uzytkownicy[wybor])];
         strcpy(path, sciezka_zapisu);
-        strcat(path, uzytkownicy[wybor]);
+        strcat(path, UsersList.uzytkownicy[wybor]);
 
         DelFile_User(path);
         DelArr_User(wybor);
@@ -107,11 +113,11 @@ void select_menu()
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     printf("[-1]: <Usuń Użytkownika>\n");
     printf("[0]: <Dodaj Użytkownika>\n"); // Stworz To do select_menu
-    for(int i = 1; i < number_of_users; i++)
+    for(int i = 1; i < UsersList.number_of_users; i++)
     {
         printf("[%d]: ", i);
         
-        printf("%s \n", uzytkownicy[i]);
+        printf("%s \n", UsersList.uzytkownicy[i]);
     }
 
     int wybor;
@@ -136,9 +142,9 @@ void Create_user()
     
     scanf("\n%[^\n]%*c", user);
     
-    for(int i = 1; i < number_of_users; i++)
+    for(int i = 1; i < UsersList.number_of_users; i++)
     {
-        if(strcmp(uzytkownicy[i],user) == 0)
+        if(strcmp(UsersList.uzytkownicy[i],user) == 0)
         {
             printf("Blad! Uzytkownik juz istnieje!\n");
             for(int i = TIMEOUT_TIME; i > 0; i--)
@@ -171,7 +177,7 @@ void Create_user()
 //        exit(0);
 //    }
     CreateFile_Events(used_path);
-    add_user(user, number_of_users);
+    add_user(user, UsersList.number_of_users);
     select_menu();
     
 }
@@ -179,8 +185,7 @@ void Create_user()
 
 
 int main(int argc, const char * argv[]) {
-    number_of_users = argc;
-    printf("%d    ", number_of_users);
+    UsersList.number_of_users = argc;
     INIT(argv);
     
     select_menu();
