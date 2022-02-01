@@ -10,7 +10,6 @@
 
 #include "./Handlers/DateHandler.h"
 #include "./Handlers/DataHandler.h"
-#include "./Handlers/StringHandler.h"
 #include "./Handlers/CreateFileHandler.h"
 
 void INIT(const char * slowo[]);
