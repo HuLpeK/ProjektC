@@ -163,26 +163,16 @@ void Create_user()
     
     mkdir(user_path, 0777);
     
-//    printf("%s %s\n", sciezka_zapisu, user_path);
     char used_path[strlen(user_path) + strlen(user)];
     strcpy(used_path, user_path);
     strcat(used_path, "/");
     
-//    FILE *fp = fopen(used_path, "w+"); // DEBUG
-    
-//    if(fp == NULL)
-//    {
-//        printf("Blad Tworzenia Nowego Uzytkownika!!!");
-////        del_user(user_path);
-//        exit(0);
-//    }
+
     CreateFiles(used_path);
     add_user(user, UsersList.number_of_users);
     select_menu();
     
 }
-
-
 
 
 int main(int argc, const char * argv[]) {

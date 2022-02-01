@@ -17,8 +17,7 @@ bool isLeap(int year)
 Date DataToUnix(int Dni)
 {
     Date x = {1970,1,1};
-   
-    
+       
 //
     while(Dni >= (isLeap(x.Rok) ? 365:366))
     {

@@ -30,7 +30,8 @@ void CreateFile_Events(char Path[])
         rmdir(Path);
         exit(0);
     }
-    char* tab[] = {"15", "Zakupy", "Kieszonkowe", "Czynsz", "Wynagrodzenie z Pracy", "Kosmetyki", "Paliwo", "Kino", "Ubrania", "Książki", "Abonament", "Internet", "Spotify", "Netflix", "Urbankart", "Bilety Komunikacji Społecznej"};
+    
+    char* tab[] = {"15", "Zakupy", "Kieszonkowe", "Czynsz", "Wynagrodzenie z Pracy", "Kosmetyki", "Paliwo", "Kino", "Ubrania", "Książki", "Abonament", "Internet", "Spotify", "Netflix", "Urbankarta", "Bilety Komunikacji Społecznej"};
     
     for(int i = 0; i <= atoi(tab[0]); i++)
         fprintf(fp, "%s;", tab[i]);
@@ -51,7 +52,6 @@ void CreateFile_Date(char Path[])
         rmdir(Path);
         exit(0);
     }
-    fprintf(fp, "xD");
     
     fclose(fp);
 }
