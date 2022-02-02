@@ -11,6 +11,7 @@
 #include "./Handlers/DateHandler.h"
 #include "./Handlers/DataHandler.h"
 #include "./Handlers/CreateFileHandler.h"
+#include "./Handlers/Vector.h"
 
 void INIT(const char * slowo[]);
 void get_user(const char path[], char** user);

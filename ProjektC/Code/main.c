@@ -76,7 +76,7 @@ void DelArr_User(int X)
     for(int i = X; i < size; i++)
         strcpy(UsersList.uzytkownicy[i], UsersList.uzytkownicy[i+1]);
     
-//    uzytkownicy[0] = itoa(size-1, uzytkownicy[0]);
+
     UsersList.number_of_users--;
 }
 
@@ -171,6 +171,25 @@ void Create_user()
     CreateFiles(used_path);
     add_user(user, UsersList.number_of_users);
     select_menu();
+}
+
+
+void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
+{
+    char* user = UsersList.uzytkownicy[index];
+    char user_path[strlen(sciezka_zapisu) + strlen(user)];
+    
+    strcpy(user_path, sciezka_zapisu);
+    strcat(user_path, user);
+    
+    char used_path[strlen(user_path)+ strlen(user)];
+    
+    strcpy(used_path, user_path);
+    strcat(used_path, "/");
+    
+    //TODO
+    struct User;
+    //ReadFiles(used_path);
     
 }
 
