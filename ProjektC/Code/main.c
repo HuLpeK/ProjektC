@@ -15,16 +15,12 @@
 #include "Header.h"
 
 #define TIMEOUT_TIME 5
-#define MAX_USER 256
 
 int START_Header = 0;
 char* sciezka_zapisu; //PREFIX do folderu SAVES/
 
 
-struct Users{
-    int number_of_users;
-    char* uzytkownicy[MAX_USER];
-};
+
 
 struct Users UsersList;
 
@@ -73,14 +69,14 @@ void get_user(const char path[], char** user)
 void DelArr_User(int X)
 {
     int size = UsersList.number_of_users;
-    for(int i = X; i < size; i++)
+    for(int i = X; i < size-1; i++)
         strcpy(UsersList.uzytkownicy[i], UsersList.uzytkownicy[i+1]);
     
 
     UsersList.number_of_users--;
 }
 
-void DelUser_Menu()
+void DelUser_Menu(void)
 {
     system("clear");
     printf("Podaj Numer Użytkownika Do usunięcia\n");
@@ -106,8 +102,27 @@ void DelUser_Menu()
     
 }
 
+void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
+{
+    char* user = UsersList.uzytkownicy[index];
+    char user_path[strlen(sciezka_zapisu) + strlen(user)];
+    
+    strcpy(user_path, sciezka_zapisu);
+    strcat(user_path, user);
+    
+    char used_path[strlen(user_path)+ strlen(user)];
+    
+    strcpy(used_path, user_path);
+    strcat(used_path, "/");
+    
+    //TODO
+//    struct User Wybraniec;
+//    Wybraniec = ReadFiles(used_path);
+    
+}
 
-void select_menu()
+
+void select_menu(void)
 {
     system("clear");
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
@@ -130,11 +145,16 @@ void select_menu()
     
     if(wybor == 0)
         Create_user();
+    
+    if(wybor >= 1 && wybor <= UsersList.number_of_users)
+    {
+        Select_User(wybor, UsersList, sciezka_zapisu);
+    }
    
     
 }
 
-void Create_user()
+void Create_user(void)
 {
     system("clear");
     printf("Podaj nazwe nowego użytkownika (Mozesz uzyc maksymalnie %d znakow!)\n", MAX_USER-1);
@@ -174,24 +194,6 @@ void Create_user()
 }
 
 
-void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
-{
-    char* user = UsersList.uzytkownicy[index];
-    char user_path[strlen(sciezka_zapisu) + strlen(user)];
-    
-    strcpy(user_path, sciezka_zapisu);
-    strcat(user_path, user);
-    
-    char used_path[strlen(user_path)+ strlen(user)];
-    
-    strcpy(used_path, user_path);
-    strcat(used_path, "/");
-    
-    //TODO
-    struct User;
-    //ReadFiles(used_path);
-    
-}
 
 
 int main(int argc, const char * argv[]) {

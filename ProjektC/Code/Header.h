@@ -13,11 +13,20 @@
 #include "./Handlers/CreateFileHandler.h"
 #include "./Handlers/Vector.h"
 
+#define MAX_USER 256
+
+
+struct Users{
+    int number_of_users;
+    char* uzytkownicy[MAX_USER];
+};
+
 void INIT(const char * slowo[]);
+void Select_User(int index, struct Users UsersList, char* sciezka_zapisu);
 void get_user(const char path[], char** user);
 void add_user(char* user, int index);
-void select_menu();
-void Create_user();
-void DelUser_Menu();
+void select_menu(void);
+void Create_user(void);
+void DelUser_Menu(void);
 void DelArr_User(int X);
 #endif /* Header_h */

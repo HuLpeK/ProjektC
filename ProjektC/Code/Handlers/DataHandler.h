@@ -10,14 +10,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "Vector.h"
 
-
-#define SIZE 50000
-
+#define ARRAY_SIZE 50000
 
 struct Events{
     int Size;
-    char* Array;
+    vector Array;
 };
 
 struct Day{ // od 01-01-1970 do 01-01-2100 = 47 483 DNI
@@ -25,19 +24,19 @@ struct Day{ // od 01-01-1970 do 01-01-2100 = 47 483 DNI
     int Value;
     
 };
-#define SIZE 50000
+
 struct Days{
     struct Day Array;
 };
 
 struct User{
     char* Name;
-    
     struct Events Events;
-    struct Days Array[SIZE];
+    vector Array[ARRAY_SIZE];
     
 };
 
-
+struct User InitUser(void);
+struct User ReadFiles(char* Path);
 
 #endif /* DataHandler_h */
