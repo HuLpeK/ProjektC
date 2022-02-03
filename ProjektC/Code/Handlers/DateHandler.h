@@ -5,8 +5,8 @@
 //  Created by Hubert Kulpaczyński on 06/01/2022.
 //
 
-#ifndef DataHandler_h
-#define DataHandler_h
+#ifndef DateHandler_h
+#define DateHandler_h
 
 #include <stdio.h>
 #include<stdio.h>
