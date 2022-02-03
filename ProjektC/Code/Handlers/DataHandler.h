@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Vector.h"
 
 #define ARRAY_SIZE 50000
@@ -29,14 +30,13 @@ struct Days{
     struct Day Array;
 };
 
-struct User{
+struct Uzytkownik{
     char* Name;
     struct Events Events;
     vector Array[ARRAY_SIZE];
-    
 };
 
-struct User InitUser(void);
-struct User ReadFiles(char* Path);
+struct Uzytkownik InitUser(void);
+struct Uzytkownik ReadFiles(char* Path);
 
 #endif /* DataHandler_h */

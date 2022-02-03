@@ -30,10 +30,10 @@ void CreateFile_Events(char Path[])
         exit(0);
     }
     
-    char* tab[] = {"Zakupy", "Kieszonkowe", "Czynsz", "Wynagrodzenie z Pracy", "Kosmetyki", "Paliwo", "Kino", "Ubrania", "Książki", "Abonament", "Internet", "Spotify", "Netflix", "Urbankarta", "Bilety Komunikacji Społecznej"};
+    char* tab[] = {"15", "Zakupy", "Kieszonkowe", "Czynsz", "Wynagrodzenie z Pracy", "Kosmetyki", "Paliwo", "Kino", "Ubrania", "Książki", "Abonament", "Internet", "Spotify", "Netflix", "Urbankarta", "Bilety Komunikacji Społecznej"};
     
-    for(int i = 0; i <= atoi(tab[0]); i++)
-        fprintf(fp, "%s;", tab[i]);
+    for(int i = 1; i <= atoi(tab[0]); i++)
+        fprintf(fp, "%s\n", tab[i]);
     
     fclose(fp);
 }
