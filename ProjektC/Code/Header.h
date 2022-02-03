@@ -25,6 +25,8 @@ void INIT(const char * slowo[]);
 void Select_User(int index, struct Users UsersList, char* sciezka_zapisu);
 void get_user(const char path[], char** user);
 void add_user(char* user, int index);
+void Select_User(int index, struct Users UsersList, char* sciezka_zapisu);
+void Select_User_Menu(struct Uzytkownik Wybraniec);
 void select_menu(void);
 void Create_user(void);
 void DelUser_Menu(void);

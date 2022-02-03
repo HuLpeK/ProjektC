@@ -116,12 +116,31 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
     strcat(used_path, "/");
     
     //TODO
-    struct Uzytkownik X;
-//    Wybraniec = ReadFiles(used_path);
+    struct Uzytkownik Wybraniec;
+    Wybraniec = ReadFiles(used_path);
+    Wybraniec.Name = user;
     
+    Select_User_Menu(Wybraniec);
 }
 
-
+void Select_User_Menu(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    printf("Nazwa Uzytkownika: %s\n", Wybraniec.Name);
+    
+    printf("[-1] Wróć\n");
+    printf("[0] Dodaj Wydatek\n");
+    printf("[1] Menu Zdefiniowanych Wydatków\n");
+    printf("[2] Stworz Zestawienie\n");
+    
+    int D;
+    scanf("%d", &D);
+    
+    if(D == -1)
+        select_menu();
+    
+    
+}
 void select_menu(void)
 {
     system("clear");
