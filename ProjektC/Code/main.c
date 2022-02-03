@@ -117,7 +117,7 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
     
     //TODO
     struct Uzytkownik X;
-//    Wybraniec = ReadFiles(used_path);
+    //Wybraniec = ReadFiles(used_path);
     
 }
 
