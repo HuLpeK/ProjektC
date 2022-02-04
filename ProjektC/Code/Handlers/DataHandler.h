@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "Vector.h"
 
 #define ARRAY_SIZE 50000
@@ -39,4 +40,6 @@ struct Uzytkownik{
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
+void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
+struct Uzytkownik DodajEvent_Events(struct Uzytkownik Wybraniec);
 #endif /* DataHandler_h */

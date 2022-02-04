@@ -49,7 +49,7 @@ struct Uzytkownik ReadFiles(char* Path)
 void Wypisz_Events(struct Uzytkownik Wybraniec)
 {
     system("clear");
-    printf("Użytkownik: %s\n", Wybraniec.Name);
+    
     
     for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
         printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
@@ -58,5 +58,58 @@ void Wypisz_Events(struct Uzytkownik Wybraniec)
     char ch;
     scanf("\n%c", &ch);
     
-    //Events_Menu(Wybraniec);
+}
+
+void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+
+    printf("Użytkownik: %s\n", Wybraniec.Name);
+    
+    printf("Wybierz Zdefiniowany wydatek którego nazwe chcesz zmienić:\n");
+    
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
+    
+    int wybor;
+    scanf("%d", &wybor);
+    
+    while(wybor < 0 || wybor >= VECTOR_SIZE(Wybraniec.Events.Array))
+    {
+        printf("Błąd Podaj Liczbe z zakresu!\n %d-%d\n", 0, VECTOR_SIZE(Wybraniec.Events.Array)-1);
+        scanf("%d", &wybor);
+    }
+    
+    printf("Podaj Nową Nazwe!\n");
+    
+    char* tmp = (char*)calloc(256,sizeof(char));
+    scanf("\n%[^\n]%*c", tmp);
+    strcat(tmp, "\n");
+
+
+    VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
+
+}
+
+struct Uzytkownik DodajEvent_Events(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    printf("Użytkownik: %s\n", Wybraniec.Name);
+    
+    printf("Podaj nazwe nowego zdefiniowanego wydatku:\n");
+    
+    char* tmp = (char*)calloc(256,sizeof(char));
+    scanf("\n%[^\n]%*c", tmp);
+
+    VECTOR_ADD(Wybraniec.Events.Array, tmp);
+    
+    
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
+    
+    
+    
+//    SaveFiles(Wybraniec, sciezka_zapisu);
+    
+    return Wybraniec;
 }

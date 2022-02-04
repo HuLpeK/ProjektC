@@ -47,6 +47,39 @@ void INIT(const char* slowo[])
     }
 }
 
+void select_menu(void)
+{
+    while(1)
+    {
+        system("clear");
+        printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
+        printf("[-1]: <Usuń Użytkownika>\n");
+        printf("[0]: <Dodaj Użytkownika>\n");
+        for(int i = 1; i < UsersList.number_of_users; i++)
+        {
+            printf("[%d]: ", i);
+            
+            printf("%s \n", UsersList.uzytkownicy[i]);
+        }
+
+        int wybor;
+        scanf("%d", &wybor);
+        
+        
+        if(wybor == -1)
+            DelUser_Menu();
+
+        
+        if(wybor == 0)
+            Create_user();
+        
+        if(wybor >= 1 && wybor <= UsersList.number_of_users)
+        {
+            Select_User(wybor, UsersList, sciezka_zapisu);
+        }
+    }
+}
+
 void WypiszUser(struct Uzytkownik Wybraniec)
 {
     printf("Użytkownik: %s\n", Wybraniec.Name);
@@ -110,6 +143,7 @@ void DelUser_Menu(void)
     select_menu();
 }
 
+
 void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
 {
     char* user = UsersList.uzytkownicy[index];
@@ -171,7 +205,7 @@ static void Events_Menu(struct Uzytkownik Wybraniec)
         printf("[2] Dodaj Zdefiniowany Wydatek\n");
         
         
-        int D = -2;
+        int D = -20;
         scanf("%d", &D);
         
         if(D == -1)
@@ -179,86 +213,35 @@ static void Events_Menu(struct Uzytkownik Wybraniec)
         if(D == 0)
         {
             Wypisz_Events(Wybraniec);
+            continue;;
         }
             
         if(D == 1)
+        {
             ZmienNazwe_Events(Wybraniec);
+            continue;
+        }
+                    
+        if(D == 2) // JAKTO JEST TO CRUSHUJE WTF?
+        {
+            struct Uzytkownik pomocnik = Wybraniec;
+            Wybraniec = DodajEvent_Events(pomocnik);
+            continue;
+        }
+        if(D == 3)
+        {
+            printf("XDDD");
+        }
+            
         
-        
-        if(D < -1 || D > 1)
-            printf("BLAD");
+//        if(D < -1 || D > 1)
+//            printf("BLAD");
     }
     Select_User_Menu(Wybraniec);
 }
 
-void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
-{
-    system("clear");
-
-    WypiszUser(Wybraniec);
-    
-    printf("Wybierz Zdefiniowany wydatek którego nazwe chcesz zmienić:\n");
-    
-    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
-        printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
-    
-    int wybor;
-    scanf("%d", &wybor);
-    
-    while(wybor < 0 || wybor >= VECTOR_SIZE(Wybraniec.Events.Array))
-    {
-        printf("Błąd Podaj Liczbe z zakresu!\n %d-%d\n", 0, VECTOR_SIZE(Wybraniec.Events.Array)-1);
-        scanf("%d", &wybor);
-    }
-    
-    printf("Podaj Nową Nazwe!\n");
-    
-    char* tmp = (char*)calloc(256,sizeof(char));
-    scanf("\n%[^\n]%*c", tmp);
-    strcat(tmp, "\n");
 
 
-    VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
-    
-
-}
-
-
-void select_menu(void)
-{
-    while(1)
-    {
-        system("clear");
-        printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
-        printf("[-1]: <Usuń Użytkownika>\n");
-        printf("[0]: <Dodaj Użytkownika>\n");
-        for(int i = 1; i < UsersList.number_of_users; i++)
-        {
-            printf("[%d]: ", i);
-            
-            printf("%s \n", UsersList.uzytkownicy[i]);
-        }
-
-        int wybor;
-        scanf("%d", &wybor);
-        
-        
-        if(wybor == -1)
-            DelUser_Menu();
-
-        
-        if(wybor == 0)
-            Create_user();
-        
-        if(wybor >= 1 && wybor <= UsersList.number_of_users)
-        {
-            Select_User(wybor, UsersList, sciezka_zapisu);
-        }
-    }
-    
-   
-    
-}
 
 void Create_user(void)
 {
