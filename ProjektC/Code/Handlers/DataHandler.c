@@ -102,6 +102,7 @@ void DodajEvent_Events(struct Uzytkownik* A)
     char* tmp = (char*)calloc(256,sizeof(char));
     scanf("\n%[^\n]%*c", tmp);
 
+    strcat(tmp, "\n");
     VECTOR_ADD(Wybraniec.Events.Array, tmp);
     
     
@@ -109,9 +110,8 @@ void DodajEvent_Events(struct Uzytkownik* A)
         printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
     
-    for(int i = 0; i < 2; i++)
-        getchar();
-                //    SaveFiles(Wybraniec, sciezka_zapisu);
+    
+                
     *A = Wybraniec;
     
 }
