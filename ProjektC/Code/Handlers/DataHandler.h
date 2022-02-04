@@ -38,4 +38,5 @@ struct Uzytkownik{
 
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
+void Wypisz_Events(struct Uzytkownik Wybraniec);
 #endif /* DataHandler_h */
