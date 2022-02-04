@@ -192,7 +192,7 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
     select_menu();
 }
 
-static void Events_Menu(struct Uzytkownik Wybraniec)
+void Events_Menu(struct Uzytkownik Wybraniec)
 {
     while(1)
     {
@@ -224,8 +224,9 @@ static void Events_Menu(struct Uzytkownik Wybraniec)
                     
         if(D == 2) // JAKTO JEST TO CRUSHUJE WTF?
         {
-            struct Uzytkownik pomocnik = Wybraniec;
-            Wybraniec = DodajEvent_Events(pomocnik);
+            struct Uzytkownik* pomocnik = &Wybraniec;
+            DodajEvent_Events(pomocnik);
+            Wybraniec = *pomocnik;
             continue;
         }
         if(D == 3)

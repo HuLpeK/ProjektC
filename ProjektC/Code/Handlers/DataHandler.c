@@ -91,8 +91,9 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 
 }
 
-struct Uzytkownik DodajEvent_Events(struct Uzytkownik Wybraniec)
+void DodajEvent_Events(struct Uzytkownik* A)
 {
+    struct Uzytkownik Wybraniec = *A;
     system("clear");
     printf("Użytkownik: %s\n", Wybraniec.Name);
     
@@ -108,8 +109,9 @@ struct Uzytkownik DodajEvent_Events(struct Uzytkownik Wybraniec)
         printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
     
+    for(int i = 0; i < 2; i++)
+        getchar();
+                //    SaveFiles(Wybraniec, sciezka_zapisu);
+    *A = Wybraniec;
     
-//    SaveFiles(Wybraniec, sciezka_zapisu);
-    
-    return Wybraniec;
 }

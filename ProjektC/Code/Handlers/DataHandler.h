@@ -41,5 +41,5 @@ struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
-struct Uzytkownik DodajEvent_Events(struct Uzytkownik Wybraniec);
+void DodajEvent_Events(struct Uzytkownik* Wybraniec);
 #endif /* DataHandler_h */
