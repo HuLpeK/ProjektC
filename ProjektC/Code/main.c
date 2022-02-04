@@ -139,47 +139,74 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
     if(D == -1)
         select_menu();
     
-    if(D == 0);
+//    if(D == 0);
     
     if(D == 1)
         Events_Menu(Wybraniec);
 }
 
-void Events_Menu(struct Uzytkownik Wybraniec)
+static void Events_Menu(struct Uzytkownik Wybraniec)
 {
-    system("clear");
-    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
-    
-    printf("[-1] Wróć\n");
-    printf("[0] Wypisz wszystkie definicje wydatków\n");
-    printf("[1] Zmień Nazwe Konkretnego Wydatku\n");
-    printf("[2] Dodaj Zdefiniowany Wydatek\n");
-    
-    
-    int D;
-    scanf("%d", &D);
-    
-    if(D == -1)
-        Select_User_Menu(Wybraniec);
-    if(D == 0)
-        Wypisz_Events(Wybraniec);
-    if(D == 1)
-        ZmienNazwe_Events(Wybraniec);
+    while(1)
+    {
+        system("clear");
+        printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+        
+        printf("[-1] Wróć\n");
+        printf("[0] Wypisz wszystkie definicje wydatków\n");
+        printf("[1] Zmień Nazwe Konkretnego Wydatku\n");
+        printf("[2] Dodaj Zdefiniowany Wydatek\n");
+        
+        
+        int D = -2;
+        scanf("%d", &D);
+        
+        if(D == -1)
+            break;
+        if(D == 0)
+        {
+            Wypisz_Events(Wybraniec);
+        }
+            
+        if(D == 1)
+            ZmienNazwe_Events(Wybraniec);
+        
+        
+        if(D < -1 || D > 1)
+            printf("BLAD");
+    }
+    Select_User_Menu(Wybraniec);
 }
 
-void Wypisz_Events(struct Uzytkownik Wybraniec)
+void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 {
     system("clear");
     printf("Użytkownik: %s\n", Wybraniec.Name);
     
+    printf("Wybierz Zdefiniowany wydatek którego nazwe chcesz zmienić:\n");
+    
     for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
         printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
-    printf("<Kliknij Cokolwiek By Wrócić>\n");
-    char ch;
-    scanf("\n%c", &ch);
+    int wybor;
+    scanf("%d", &wybor);
     
-    Events_Menu(Wybraniec);
+    while(wybor < 0 || wybor >= VECTOR_SIZE(Wybraniec.Events.Array))
+    {
+        printf("Błąd Podaj Liczbe z zakresu!\n %d-%d\n", 0, VECTOR_SIZE(Wybraniec.Events.Array)-1);
+        scanf("%d", &wybor);
+    }
+    
+    printf("Podaj Nową Nazwe!\n");
+    
+    char* tmp = (char*)calloc(256,sizeof(char));
+    scanf("\n%[^\n]%*c", tmp);
+    
+//    Wybraniec.Events.Array[wybor] = tmp;
+    VECTOR_DELETE(Wybraniec.Events.Array, wybor);
+    VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
+    
+//    Events_Menu(Wybraniec);s
 }
 
 

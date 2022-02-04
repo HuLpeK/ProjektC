@@ -46,3 +46,17 @@ struct Uzytkownik ReadFiles(char* Path)
     return  wybraniec;
 }
 
+void Wypisz_Events(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    printf("Użytkownik: %s\n", Wybraniec.Name);
+    
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
+
+    printf("<Kliknij Cokolwiek By Wrócić>\n");
+    char ch;
+    scanf("\n%c", &ch);
+    
+    //Events_Menu(Wybraniec);
+}
