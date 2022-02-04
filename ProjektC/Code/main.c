@@ -163,7 +163,7 @@ static void Events_Menu(struct Uzytkownik Wybraniec)
     while(1)
     {
         system("clear");
-        printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+        WypiszUser(Wybraniec);
         
         printf("[-1] Wróć\n");
         printf("[0] Wypisz wszystkie definicje wydatków\n");
@@ -194,7 +194,7 @@ static void Events_Menu(struct Uzytkownik Wybraniec)
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 {
     system("clear");
-//    printf("Użytkownik: %s\n", Wybraniec.Name);
+
     WypiszUser(Wybraniec);
     
     printf("Wybierz Zdefiniowany wydatek którego nazwe chcesz zmienić:\n");
@@ -216,11 +216,11 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
     char* tmp = (char*)calloc(256,sizeof(char));
     scanf("\n%[^\n]%*c", tmp);
     strcat(tmp, "\n");
-//    Wybraniec.Events.Array[wybor] = tmp;
-//    VECTOR_DELETE(Wybraniec.Events.Array, wybor);
+
+
     VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
     
-//    Events_Menu(Wybraniec);s
+
 }
 
 
