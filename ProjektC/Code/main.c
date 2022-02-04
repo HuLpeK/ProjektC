@@ -47,6 +47,11 @@ void INIT(const char* slowo[])
     }
 }
 
+void WypiszUser(struct Uzytkownik Wybraniec)
+{
+    printf("Użytkownik: %s\n", Wybraniec.Name);
+}
+
 void add_user(char* user, int index)
 {
     if(index >= UsersList.number_of_users)
@@ -126,7 +131,8 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
 void Select_User_Menu(struct Uzytkownik Wybraniec)
 {
     system("clear");
-    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+//    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+    WypiszUser(Wybraniec);
     
     printf("[-1] Wróć\n");
     printf("[0] Dodaj Wydatek\n");
@@ -148,7 +154,8 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
 void Events_Menu(struct Uzytkownik Wybraniec)
 {
     system("clear");
-    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+//    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+    WypiszUser(Wybraniec);
     
     printf("[-1] Wróć\n");
     printf("[0] Wypisz wszystkie definicje wydatków\n");
@@ -163,14 +170,17 @@ void Events_Menu(struct Uzytkownik Wybraniec)
         Select_User_Menu(Wybraniec);
     if(D == 0)
         Wypisz_Events(Wybraniec);
-    if(D == 1)
-        ZmienNazwe_Events(Wybraniec);
+//    if(D == 1)
+//        ZmienNazwe_Events(Wybraniec);
 }
+
+
 
 void Wypisz_Events(struct Uzytkownik Wybraniec)
 {
     system("clear");
-    printf("Użytkownik: %s\n", Wybraniec.Name);
+//    printf("Użytkownik: %s\n", Wybraniec.Name);
+    WypiszUser(Wybraniec);
     
     for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
         printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
