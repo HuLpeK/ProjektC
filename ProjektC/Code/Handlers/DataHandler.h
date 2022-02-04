@@ -38,5 +38,4 @@ struct Uzytkownik{
 
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
-
 #endif /* DataHandler_h */

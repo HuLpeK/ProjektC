@@ -115,7 +115,7 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
     strcpy(used_path, user_path);
     strcat(used_path, "/");
     
-    //TODO
+    
     struct Uzytkownik Wybraniec;
     Wybraniec = ReadFiles(used_path);
     Wybraniec.Name = user;
@@ -126,11 +126,11 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
 void Select_User_Menu(struct Uzytkownik Wybraniec)
 {
     system("clear");
-    printf("Nazwa Uzytkownika: %s\n", Wybraniec.Name);
+    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
     
     printf("[-1] Wróć\n");
     printf("[0] Dodaj Wydatek\n");
-    printf("[1] Menu Zdefiniowanych Wydatków\n");
+    printf("[1] Menu Definicji Wydatków\n");
     printf("[2] Stworz Zestawienie\n");
     
     int D;
@@ -139,14 +139,56 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
     if(D == -1)
         select_menu();
     
+    if(D == 0);
     
+    if(D == 1)
+        Events_Menu(Wybraniec);
 }
+
+void Events_Menu(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+    
+    printf("[-1] Wróć\n");
+    printf("[0] Wypisz wszystkie definicje wydatków\n");
+    printf("[1] Zmień Nazwe Konkretnego Wydatku\n");
+    printf("[2] Dodaj Zdefiniowany Wydatek\n");
+    
+    
+    int D;
+    scanf("%d", &D);
+    
+    if(D == -1)
+        Select_User_Menu(Wybraniec);
+    if(D == 0)
+        Wypisz_Events(Wybraniec);
+    if(D == 1)
+        ZmienNazwe_Events(Wybraniec);
+}
+
+void Wypisz_Events(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    printf("Użytkownik: %s\n", Wybraniec.Name);
+    
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        printf("[%d] %s", i,VECTOR_GET(Wybraniec.Events.Array, char*, i));
+    
+    printf("<Kliknij Cokolwiek By Wrócić>\n");
+    char ch;
+    scanf("\n%c", &ch);
+    
+    Events_Menu(Wybraniec);
+}
+
+
 void select_menu(void)
 {
     system("clear");
     printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
     printf("[-1]: <Usuń Użytkownika>\n");
-    printf("[0]: <Dodaj Użytkownika>\n"); // Stworz To do select_menu
+    printf("[0]: <Dodaj Użytkownika>\n");
     for(int i = 1; i < UsersList.number_of_users; i++)
     {
         printf("[%d]: ", i);

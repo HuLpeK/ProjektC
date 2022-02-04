@@ -45,3 +45,4 @@ struct Uzytkownik ReadFiles(char* Path)
     
     return  wybraniec;
 }
+
