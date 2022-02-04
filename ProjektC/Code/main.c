@@ -83,28 +83,31 @@ void DelArr_User(int X)
 
 void DelUser_Menu(void)
 {
-    system("clear");
-    printf("Podaj Numer Użytkownika Do usunięcia\n");
-    printf("[0] <Wroc do Menu>\n");
-    for(int i = 1; i < UsersList.number_of_users; i++)
-        printf("[%d]: %s\n", i, UsersList.uzytkownicy[i]);
-    
-    int wybor;
-    scanf("%d", &wybor);
-    
-    if(wybor == 0)
-        select_menu();
-    else
+    while(1)
     {
-        char path[strlen(sciezka_zapisu) + strlen(UsersList.uzytkownicy[wybor])];
-        strcpy(path, sciezka_zapisu);
-        strcat(path, UsersList.uzytkownicy[wybor]);
+        system("clear");
+        printf("Podaj Numer Użytkownika Do usunięcia\n");
+        printf("[0] <Wroc do Menu>\n");
+        for(int i = 1; i < UsersList.number_of_users; i++)
+            printf("[%d]: %s\n", i, UsersList.uzytkownicy[i]);
+        
+        int wybor;
+        scanf("%d", &wybor);
+        
+        if(wybor == 0)
+            break;
+        else
+        {
+            char path[strlen(sciezka_zapisu) + strlen(UsersList.uzytkownicy[wybor])];
+            strcpy(path, sciezka_zapisu);
+            strcat(path, UsersList.uzytkownicy[wybor]);
 
-        DelFile_User(path);
-        DelArr_User(wybor);
-        select_menu();
+            DelFile_User(path);
+            DelArr_User(wybor);
+            select_menu();
+        }
     }
-    
+    select_menu();
 }
 
 void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
@@ -130,25 +133,29 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
 
 void Select_User_Menu(struct Uzytkownik Wybraniec)
 {
-    system("clear");
-//    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
-    WypiszUser(Wybraniec);
-    
-    printf("[-1] Wróć\n");
-    printf("[0] Dodaj Wydatek\n");
-    printf("[1] Menu Definicji Wydatków\n");
-    printf("[2] Stworz Zestawienie\n");
-    
-    int D;
-    scanf("%d", &D);
-    
-    if(D == -1)
-        select_menu();
-    
-//    if(D == 0);
-    
-    if(D == 1)
-        Events_Menu(Wybraniec);
+    while(1)
+    {
+        system("clear");
+    //    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
+        WypiszUser(Wybraniec);
+        
+        printf("[-1] Wróć\n");
+        printf("[0] Dodaj Wydatek\n");
+        printf("[1] Menu Definicji Wydatków\n");
+        printf("[2] Stworz Zestawienie\n");
+        
+        int D;
+        scanf("%d", &D);
+        
+        if(D == -1)
+            break;
+        
+    //    if(D == 0);
+        
+        if(D == 1)
+            Events_Menu(Wybraniec);
+    }
+    select_menu();
 }
 
 static void Events_Menu(struct Uzytkownik Wybraniec)
@@ -208,9 +215,9 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
     
     char* tmp = (char*)calloc(256,sizeof(char));
     scanf("\n%[^\n]%*c", tmp);
-    
+    strcat(tmp, "\n");
 //    Wybraniec.Events.Array[wybor] = tmp;
-    VECTOR_DELETE(Wybraniec.Events.Array, wybor);
+//    VECTOR_DELETE(Wybraniec.Events.Array, wybor);
     VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
     
 //    Events_Menu(Wybraniec);s
@@ -219,32 +226,36 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 
 void select_menu(void)
 {
-    system("clear");
-    printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
-    printf("[-1]: <Usuń Użytkownika>\n");
-    printf("[0]: <Dodaj Użytkownika>\n");
-    for(int i = 1; i < UsersList.number_of_users; i++)
+    while(1)
     {
-        printf("[%d]: ", i);
+        system("clear");
+        printf("Wybierz użytkownika z listy lub dodaj kolejnego:\n");
+        printf("[-1]: <Usuń Użytkownika>\n");
+        printf("[0]: <Dodaj Użytkownika>\n");
+        for(int i = 1; i < UsersList.number_of_users; i++)
+        {
+            printf("[%d]: ", i);
+            
+            printf("%s \n", UsersList.uzytkownicy[i]);
+        }
+
+        int wybor;
+        scanf("%d", &wybor);
         
-        printf("%s \n", UsersList.uzytkownicy[i]);
-    }
+        
+        if(wybor == -1)
+            DelUser_Menu();
 
-    int wybor;
-    scanf("%d", &wybor);
-    
-    
-    if(wybor == -1)
-        DelUser_Menu();
-
-    
-    if(wybor == 0)
-        Create_user();
-    
-    if(wybor >= 1 && wybor <= UsersList.number_of_users)
-    {
-        Select_User(wybor, UsersList, sciezka_zapisu);
+        
+        if(wybor == 0)
+            Create_user();
+        
+        if(wybor >= 1 && wybor <= UsersList.number_of_users)
+        {
+            Select_User(wybor, UsersList, sciezka_zapisu);
+        }
     }
+    
    
     
 }
