@@ -7,6 +7,30 @@
 
 #include "DataHandler.h"
 
+
+
+void SaveFiles(struct Uzytkownik Wybraniec, char Path[])
+{
+    char user_path[strlen(Path)+strlen(Wybraniec.Name)+strlen("Events")+2];
+    strcpy(user_path,Path);
+    strcat(user_path, Wybraniec.Name);
+    strcat(user_path, "/");
+    
+    char used_path[strlen(Path)+strlen(Wybraniec.Name)+strlen("Events")+2];
+    //Zapisywanie do pliku Events
+    strcpy(used_path, user_path);
+    strcat(used_path, "Events");
+    FILE* fp = fopen(used_path, "w");
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        fprintf(fp, "%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
+    
+    fclose(fp);
+
+    
+}
+
+
+
 struct Uzytkownik InitUser()
 {
     struct Uzytkownik wybaraniec;
@@ -91,7 +115,7 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 
 }
 
-void DodajEvent_Events(struct Uzytkownik* A)
+void DodajEvent_Events(struct Uzytkownik* A, char Path[])
 {
     struct Uzytkownik Wybraniec = *A;
     system("clear");
@@ -109,9 +133,7 @@ void DodajEvent_Events(struct Uzytkownik* A)
     for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
         printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
-    
-    
+    SaveFiles(Wybraniec, Path);
                 
     *A = Wybraniec;
-    
 }

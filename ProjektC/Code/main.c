@@ -67,8 +67,7 @@ void select_menu(void)
         
         
         if(wybor == -1)
-            DelUser_Menu();
-
+            break;
         
         if(wybor == 0)
             Create_user();
@@ -78,6 +77,7 @@ void select_menu(void)
             Select_User(wybor, UsersList, sciezka_zapisu);
         }
     }
+    DelUser_Menu();
 }
 
 void WypiszUser(struct Uzytkownik Wybraniec)
@@ -140,7 +140,7 @@ void DelUser_Menu(void)
             select_menu();
         }
     }
-    select_menu();
+    //select_menu();
 }
 
 
@@ -189,7 +189,7 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
         if(D == 1)
             Events_Menu(Wybraniec);
     }
-    select_menu();
+    //select_menu();
 }
 
 void Events_Menu(struct Uzytkownik Wybraniec)
@@ -225,7 +225,7 @@ void Events_Menu(struct Uzytkownik Wybraniec)
         if(D == 2) // JAKTO JEST TO CRUSHUJE WTF?
         {
             struct Uzytkownik* pomocnik = &Wybraniec;
-            DodajEvent_Events(pomocnik);
+            DodajEvent_Events(pomocnik, sciezka_zapisu);
             Wybraniec = *pomocnik;
             continue;
         }
@@ -238,7 +238,7 @@ void Events_Menu(struct Uzytkownik Wybraniec)
 //        if(D < -1 || D > 1)
 //            printf("BLAD");
     }
-    Select_User_Menu(Wybraniec);
+    //Select_User_Menu(Wybraniec);
 }
 
 
@@ -280,7 +280,7 @@ void Create_user(void)
 
     CreateFiles(used_path);
     add_user(user, UsersList.number_of_users);
-    select_menu();
+    //select_menu();
 }
 
 

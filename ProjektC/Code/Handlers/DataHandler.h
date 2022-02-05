@@ -12,8 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "Vector.h"
-
+#include "./Vector.h"
+//#include "./SaveFileHandler.h"
 #define ARRAY_SIZE 50000
 
 struct Events{
@@ -37,9 +37,11 @@ struct Uzytkownik{
     vector Array[ARRAY_SIZE];
 };
 
+void SaveFiles(struct Uzytkownik Wybraniec, char Path[]);
+void SaveFiles_Events(struct Uzytkownik Wybraniec, char Path[]);
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
-void DodajEvent_Events(struct Uzytkownik* Wybraniec);
+void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
 #endif /* DataHandler_h */
