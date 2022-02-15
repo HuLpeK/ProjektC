@@ -14,7 +14,7 @@ bool isLeap(int year)
 }
 
 
-Date DataToUnix(int Dni)
+Date UnixToData(int Dni)
 {
     Date x = {1970,1,1};
        
@@ -40,4 +40,28 @@ Date DataToUnix(int Dni)
     x.Dzien += Dni;
     
     return x;
+}
+
+int DataToUnix(Date Data)
+{
+    Date x = {1970,1,1};
+    int DNI = 0;
+    
+    int MO_LEN[13] = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    
+    DNI += Data.Dzien - x.Dzien;
+    for(int i = 1; 1 <= 12 && x.Miesiac != Data.Miesiac; i++)
+    {
+        DNI += MO_LEN[i];
+        x.Miesiac++;
+    }
+    
+    for(; x.Rok != Data.Rok; x.Rok++)
+    {
+        if(isLeap(x.Rok))
+            DNI++;
+        DNI+=365;
+    }
+    
+    return DNI;
 }

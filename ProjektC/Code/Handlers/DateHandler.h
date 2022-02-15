@@ -22,7 +22,7 @@ typedef struct Date
 
 bool isLeap(int year);
 
-Date DataToUnix(int Dni);
-
+Date UnixToData(int Dni);
+int DataToUnix(Date Data);
 
 #endif /* DataHandler_h */
