@@ -34,6 +34,6 @@ void select_menu(void);
 void Create_user(void);
 void DelUser_Menu(void);
 void DelArr_User(int X);
-void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
+//void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
 
 #endif /* Header_h */

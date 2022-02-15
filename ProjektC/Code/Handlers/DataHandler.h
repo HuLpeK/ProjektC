@@ -13,8 +13,12 @@
 #include <string.h>
 #include <assert.h>
 #include "./Vector.h"
-//#include "./SaveFileHandler.h"
 #define ARRAY_SIZE 50000
+
+struct Wydatek{
+    int koszt;
+    int ID;
+};
 
 struct Events{
     int Size;
@@ -38,10 +42,9 @@ struct Uzytkownik{
 };
 
 void SaveFiles(struct Uzytkownik Wybraniec, char Path[]);
-void SaveFiles_Events(struct Uzytkownik Wybraniec, char Path[]);
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
-void ZmienNazwe_Events(struct Uzytkownik Wybraniec);
+void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[]);
 void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
 #endif /* DataHandler_h */

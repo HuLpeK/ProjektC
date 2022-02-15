@@ -29,8 +29,6 @@ void SaveFiles(struct Uzytkownik Wybraniec, char Path[])
     
 }
 
-
-
 struct Uzytkownik InitUser()
 {
     struct Uzytkownik wybaraniec;
@@ -84,7 +82,7 @@ void Wypisz_Events(struct Uzytkownik Wybraniec)
     
 }
 
-void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
+void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[])
 {
     system("clear");
 
@@ -112,6 +110,8 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec)
 
 
     VECTOR_SET(Wybraniec.Events.Array, wybor, tmp);
+    
+    SaveFiles(Wybraniec, Path);
 
 }
 
@@ -134,6 +134,6 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
         printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
     SaveFiles(Wybraniec, Path);
-                
+    
     *A = Wybraniec;
 }

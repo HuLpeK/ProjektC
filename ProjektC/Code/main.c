@@ -218,7 +218,7 @@ void Events_Menu(struct Uzytkownik Wybraniec)
             
         if(D == 1)
         {
-            ZmienNazwe_Events(Wybraniec);
+            ZmienNazwe_Events(Wybraniec, sciezka_zapisu);
             continue;
         }
                     
@@ -291,8 +291,6 @@ int main(int argc, const char * argv[]) {
     INIT(argv);
     
     select_menu();
-    
-    
     
     return 0;
 }
