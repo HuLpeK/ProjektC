@@ -38,7 +38,7 @@ struct Days{
 struct Uzytkownik{
     char* Name;
     struct Events Events;
-    vector Array[ARRAY_SIZE];
+    vector Dzien[ARRAY_SIZE];
 };
 
 void SaveFiles(struct Uzytkownik Wybraniec, char Path[]);
