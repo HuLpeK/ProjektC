@@ -166,7 +166,7 @@ void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[])
     Wydateczek->koszt = pomoc;
         
     for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
-        printf("[%d]: %s",ig, VECTOR_GET(Wybraniec.Events.Array, char*, i));
+        printf("[%d]: %s",i, VECTOR_GET(Wybraniec.Events.Array, char*, i));
     
     printf("Podaj ID wydatku któremu chcesz przypisać nowy Zmianę\n");
     
