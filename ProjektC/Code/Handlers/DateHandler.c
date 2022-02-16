@@ -75,7 +75,7 @@ int CheckDate(Date Data)
     if(Data.Rok < 1970 || Data.Miesiac <= 0 || Data.Dzien <= 0 || Data.Miesiac > 12)
         return 0;
     
-    if(MO_LEN[Data.Miesiac] > Data.Dzien)
+    if(MO_LEN[Data.Miesiac] < Data.Dzien)
         return 0;
     
     

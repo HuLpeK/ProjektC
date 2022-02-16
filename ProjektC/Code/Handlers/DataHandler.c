@@ -139,7 +139,7 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
 }
 
 
-void Dodaj_Wydatek(struct Uzytkownik Wybraniec)
+void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[])
 {
     system("clear");
     
@@ -157,14 +157,25 @@ void Dodaj_Wydatek(struct Uzytkownik Wybraniec)
     
     Dzien = DateToUnix(Data);
     
-    struct Wydatek Wydatek;
+    struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
     
     printf("Podaj Wartość (jeśli to odchód to dodaj minus przed wartościa)\n");
+    int pomoc;
+    scanf("%d", &pomoc);
     
-    scanf("%d", &Wydatek.koszt);
+    Wydateczek->koszt = pomoc;
+        
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+        printf("[%d]: %s",ig, VECTOR_GET(Wybraniec.Events.Array, char*, i));
+    
+    printf("Podaj ID wydatku któremu chcesz przypisać nowy Zmianę\n");
+    
+    int pomoc1;
+    scanf("%d", &pomoc1);
+    
+    Wydateczek->ID = pomoc1;
     
     
-    
-    
-    
+    VECTOR_ADD(Wybraniec.Dzien[Dzien], Wydateczek);
+    SaveFiles(&Wybraniec, Path);
 }
