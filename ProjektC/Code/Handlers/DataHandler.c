@@ -151,6 +151,20 @@ void Dodaj_Wydatek(struct Uzytkownik Wybraniec)
     Date Data = {Rok,Miesiac,Dzien};
     if(!CheckDate(Data))
     {
-        
+        printf("Błąd podania daty!\n");
+        return;
     }
+    
+    Dzien = DateToUnix(Data);
+    
+    struct Wydatek Wydatek;
+    
+    printf("Podaj Wartość (jeśli to odchód to dodaj minus przed wartościa)\n");
+    
+    scanf("%d", &Wydatek.koszt);
+    
+    
+    
+    
+    
 }

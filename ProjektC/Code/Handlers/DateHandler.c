@@ -14,7 +14,7 @@ bool isLeap(int year)
 }
 
 
-Date UnixToData(int Dni)
+Date UnixToDate(int Dni)
 {
     Date x = {1970,1,1};
        
@@ -42,7 +42,7 @@ Date UnixToData(int Dni)
     return x;
 }
 
-int DataToUnix(Date Data)
+int DateToUnix(Date Data)
 {
     Date x = {1970,1,1};
     int DNI = 0;
