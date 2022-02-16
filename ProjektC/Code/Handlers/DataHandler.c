@@ -137,3 +137,20 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
     
     *A = Wybraniec;
 }
+
+
+void Dodaj_Wydatek(struct Uzytkownik Wybraniec)
+{
+    system("clear");
+    
+    printf("Podaj Date w której chcesz dodać wydatek: [RRRR-MM-DD]\n");
+    
+    int Rok,Miesiac,Dzien;
+    scanf("%d-%d-%d", &Rok, &Miesiac, &Dzien);
+          
+    Date Data = {Rok,Miesiac,Dzien};
+    if(!CheckDate(Data))
+    {
+        
+    }
+}

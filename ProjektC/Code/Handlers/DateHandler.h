@@ -24,5 +24,5 @@ bool isLeap(int year);
 
 Date UnixToData(int Dni);
 int DataToUnix(Date Data);
-
+int CheckDate(Date Data);
 #endif /* DataHandler_h */

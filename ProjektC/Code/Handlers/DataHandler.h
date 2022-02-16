@@ -13,6 +13,7 @@
 #include <string.h>
 #include <assert.h>
 #include "./Vector.h"
+#include "./DateHandler.h"
 #define ARRAY_SIZE 50000
 
 struct Wydatek{
@@ -47,4 +48,5 @@ struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[]);
 void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
+void Dodaj_Wydatek(struct Uzytkownik Wybraniec);
 #endif /* DataHandler_h */

@@ -174,7 +174,7 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
         WypiszUser(Wybraniec);
         
         printf("[-1] Wróć\n");
-        printf("[0] Dodaj Wydatek\n");
+        printf("[0] Menu Wydatków\n");
         printf("[1] Menu Definicji Wydatków\n");
         printf("[2] Stworz Zestawienie\n");
         
@@ -195,7 +195,27 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
 
 void Wydatek_Menu(struct Uzytkownik Wybraniec)
 {
-    
+    while(1)
+    {
+        system("clear");
+        WypiszUser(Wybraniec);
+        
+        printf("[-1] Wróć\n");
+        printf("[0] Dodaj Wydatek\n");
+        printf("[1] Wypisz Wydatki w Okresie\n");
+        printf("[2] Usuń Wydatek\n");
+        
+        int D;
+        scanf("%d", &D);
+        
+        if(D == -1)
+            break;
+        
+        if(D == 0)
+            Dodaj_Wydatek(Wybraniec);
+        
+        
+    }
 }
 
 void Events_Menu(struct Uzytkownik Wybraniec)

@@ -65,3 +65,19 @@ int DataToUnix(Date Data)
     
     return DNI;
 }
+
+
+int CheckDate(Date Data)
+{
+    int MO_LEN[13] = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    if(isLeap(Data.Rok))
+        MO_LEN[2]++;
+    if(Data.Rok < 1970 || Data.Miesiac <= 0 || Data.Dzien <= 0 || Data.Miesiac > 12)
+        return 0;
+    
+    if(MO_LEN[Data.Miesiac] > Data.Dzien)
+        return 0;
+    
+    
+    return 1;
+}
