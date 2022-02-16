@@ -42,7 +42,7 @@ struct Uzytkownik{
     vector Dzien[ARRAY_SIZE];
 };
 
-void SaveFiles(struct Uzytkownik Wybraniec, char Path[]);
+void SaveFiles(struct Uzytkownik* Wybraniec, char Path[]);
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
