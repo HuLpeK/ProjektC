@@ -184,12 +184,18 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
         if(D == -1)
             break;
         
-    //    if(D == 0);
+        if(D == 0)
+            Wydatek_Menu(Wybraniec);
         
         if(D == 1)
             Events_Menu(Wybraniec);
     }
     //select_menu();
+}
+
+void Wydatek_Menu(struct Uzytkownik Wybraniec)
+{
+    
 }
 
 void Events_Menu(struct Uzytkownik Wybraniec)

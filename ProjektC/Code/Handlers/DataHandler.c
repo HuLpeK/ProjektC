@@ -34,7 +34,7 @@ struct Uzytkownik InitUser()
     struct Uzytkownik wybaraniec;
     
     for(int i = 0; i < ARRAY_SIZE; i++)
-        vector_init(&wybaraniec.Array[i]);
+        vector_init(&wybaraniec.Dzien[i]);
     
     vector_init(&wybaraniec.Events.Array);
     
