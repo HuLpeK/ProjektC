@@ -251,7 +251,7 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     if(pomoc1 < 0 || pomoc1 >= VECTOR_SIZE(Wybraniec.Events.Array))
     {
         printf("Blad ID jest spoza zakresu!\n");
-        free(Wydateczek);D
+        free(Wydateczek);
         return;
     }
     Wydateczek->ID = pomoc1;
