@@ -86,6 +86,41 @@ struct Uzytkownik ReadFiles(char* Path)
         VECTOR_ADD(wybraniec.Events.Array, tmp);
     }
     
+    fclose(fp);
+    
+    strcpy(help, Path);
+    strcat(help, "Date");
+    
+    fp = fopen(help, "r");
+    
+    while(1)
+    {
+        int dzien;
+        int ID = 0;
+        int koszt = 0;
+        char* IDs = (char*)calloc(256, sizeof(char));
+        char* koszts = (char*)calloc(256, sizeof(char));
+        dzien = fscanf(fp, "%d", &dzien);
+        if(dzien == EOF)
+            break;
+        while(!(IDs != "\n" || IDs != EOF || koszts != "\n" || koszts != EOF))
+        {
+            fscanf(fp, "%s-%s;", &IDs, &koszts);
+            ID = atoi(IDs);
+            koszt = atoi(koszts);
+            struct Wydatek* pomoc = (struct Wydatek*)malloc(sizeof(struct Wydatek));
+            pomoc->ID = ID;
+            pomoc->koszt = koszt;
+            VECTOR_ADD((wybraniec.Dzien[dzien]), pomoc);
+        }
+        
+//        free(IDs);
+//        free(koszts);
+    }
+    
+    
+    fclose(fp);
+    
     return  wybraniec;
 }
 
@@ -196,7 +231,9 @@ void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[])
     
     Wydateczek->ID = pomoc1;
     
-    
     VECTOR_ADD(Wybraniec.Dzien[Dzien], Wydateczek);
     SaveFiles(&Wybraniec, Path);
 }
+
+
+

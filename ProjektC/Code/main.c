@@ -214,6 +214,9 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
         if(D == 0)
             Dodaj_Wydatek(Wybraniec, sciezka_zapisu);
         
+        if(D == 1)
+            Wypisz_Wydatki(0,50000);
+        
     }
 }
 
