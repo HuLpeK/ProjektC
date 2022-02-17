@@ -44,6 +44,12 @@ Date UnixToDate(int Dni)
 
 int DateToUnix(Date Data)
 {
+    
+    if(!CheckDate(Data))
+    {
+        printf("Blad Daty!\n");
+        return -1;
+    }
     Date x = {1970,1,1};
     int DNI = 0;
     
