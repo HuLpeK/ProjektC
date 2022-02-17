@@ -17,7 +17,7 @@
 #define ARRAY_SIZE 50000
 
 struct Wydatek{
-    int koszt;
+    double koszt;
     int ID;
 };
 

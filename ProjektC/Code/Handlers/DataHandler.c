@@ -40,7 +40,7 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
             for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); i++)
             {
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
-                fprintf(fp, "%d-%d; ", Wydateczek->ID, Wydateczek->koszt);
+                fprintf(fp, "%d-%lf; ", Wydateczek->ID, Wydateczek->koszt);
             }
 //            fprintf(fp, "\n");
         }
@@ -101,8 +101,8 @@ struct Uzytkownik ReadFiles(char* Path)
         if(feof(fp))
             break;
         int* ID = (int*)malloc(sizeof(int));
-        int* koszt = (int*)malloc(sizeof(int));
-        while(fscanf(fp, " %d-%d;", ID, koszt))
+        double* koszt = (double*)malloc(sizeof(double));
+        while(fscanf(fp, " %d-%lf;", ID, koszt))
         {
             if(feof(fp))
                 break;
@@ -133,7 +133,7 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
             char pomocnik[256];
             strcpy(pomocnik, Evencik);
             pomocnik[strlen(pomocnik)-1] = '\0';
-            printf("%d-%d-%d: %s %d\n", Datka.Rok, Datka.Miesiac, Datka.Dzien, pomocnik, Wydateczek->koszt);
+            printf("%d-%d-%d: %s %.2fzł\n", Datka.Rok, Datka.Miesiac, Datka.Dzien, pomocnik, Wydateczek->koszt);
         }
     }
     
@@ -218,7 +218,7 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     struct Uzytkownik Wybraniec = *A;
     system("clear");
     
-    printf("Podaj Date w której chcesz dodać wydatek: [RRRR-MM-DD]\n");
+    printf("Podaj Date w której chcesz dodać wydatek:\n[RRRR-MM-DD]\n");
     
     int Rok,Miesiac,Dzionek;
     Rok = -1; Miesiac = -1; Dzionek = -1;
@@ -236,8 +236,8 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
     
     printf("Podaj Wartość (jeśli to odchód to dodaj minus przed wartościa)\n");
-    int pomoc;
-    scanf("%d", &pomoc);
+    double pomoc;
+    scanf("%lf", &pomoc);
     
     Wydateczek->koszt = pomoc;
         
