@@ -42,7 +42,7 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
                 fprintf(fp, "%d-%lf; ", Wydateczek->ID, Wydateczek->koszt);
             }
-//            fprintf(fp, "\n");
+            fprintf(fp, "\n");
         }
         
     }
@@ -252,7 +252,7 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     Wydateczek->ID = pomoc1;
     
     VECTOR_ADD(Wybraniec.Dzien[Dzionek], Wydateczek);
-//    SaveFiles(&Wybraniec, Path);
+    SaveFiles(&Wybraniec, Path);
     
     *A = Wybraniec;
 }
