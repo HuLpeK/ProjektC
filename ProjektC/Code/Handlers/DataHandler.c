@@ -36,11 +36,12 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
         {
             struct Date Datka;
             Datka = UnixToDate(i);
-            fprintf(fp, "%d-%d-%d ", Datka.Rok, Datka.Miesiac, Datka.Dzien);
+//            fprintf(fp, "%d-%d-%d ", Datka.Rok, Datka.Miesiac, Datka.Dzien);
+            fprintf(fp, "%d ", i);
             for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); i++)
             {
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
-                fprintf(fp, "%d-%d;", Wydateczek->ID, Wydateczek->koszt);
+                fprintf(fp, "%d-%d; ", Wydateczek->ID, Wydateczek->koszt);
             }
         }
     }
@@ -117,6 +118,24 @@ struct Uzytkownik ReadFiles(char* Path)
 ////        free(IDs);
 ////        free(koszts);
 //    }
+    
+    int dzien = -1;
+    while(fscanf(fp, "%d", &dzien))
+    {
+        if(feof(fp))
+            break;
+        int* ID = (int*)malloc(sizeof(int));
+        int* koszt = (int*)malloc(sizeof(int));
+        while(fscanf(fp, " %d-%d;", ID, koszt))
+        {
+            if(feof(fp))
+                break;
+            struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
+            Wydateczek->ID = *ID;
+            Wydateczek->koszt = *koszt;
+            VECTOR_ADD(wybraniec.Dzien[dzien], Wydateczek);
+        }
+    }
     
     
     fclose(fp);
