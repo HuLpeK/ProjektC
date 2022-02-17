@@ -81,9 +81,9 @@ void select_menu(void)
     DelUser_Menu();
 }
 
-void WypiszUser(struct Uzytkownik Wybraniec)
+void WypiszUser(struct Uzytkownik* Wybraniec)
 {
-    printf("Użytkownik: %s\n", Wybraniec.Name);
+    printf("Użytkownik: %s\n", Wybraniec->Name);
 }
 
 void add_user(char* user, int index)
@@ -172,7 +172,9 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
     {
         system("clear");
     //    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
-        WypiszUser(Wybraniec);
+        WypiszUser(&Wybraniec);
+
+
         
         printf("[-1] Wróć\n");
         printf("[0] Menu Wydatków\n");
@@ -199,11 +201,13 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
     while(1)
     {
         system("clear");
-        WypiszUser(Wybraniec);
+        WypiszUser(&Wybraniec);
+
+
         
         printf("[-1] Wróć\n");
         printf("[0] Dodaj Wydatek\n");
-        printf("[1] Wypisz Wydatki w Okresie\n");
+        printf("[1] Wypisz Wydatki\n");
         printf("[2] Usuń Wydatek\n");
         
         int D;
@@ -213,10 +217,48 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
             break;
         
         if(D == 0)
+        {
             Dodaj_Wydatek(&Wybraniec, sciezka_zapisu);
+            continue;
+        }
+            
         
         if(D == 1)
-            Wypisz_Wydatki(Wybraniec,0,49999);
+        {
+            system("clear");
+            WypiszUser(&Wybraniec);
+
+            printf("W jakim Okresie?\n");
+            printf("[-1] Wróć\n");
+            printf("[0] Całym\n");
+            printf("[1] Zdefiniowanym\n");
+
+            int D1 = -2;
+            scanf("%d", &D1);
+
+
+            if(D1 == -1)
+                continue;
+
+            if(D1 == 0)
+                Wypisz_Wydatki(Wybraniec, 0, 49999);
+
+            if(D1 == 1)
+            {
+                printf("Podaj Datę poczatkową i końca, daty będą użyte włącznie\n[RRRR-MM-DD RRRR-MM-DD]\n");
+                Date START = {1970,1,1};
+                Date KONIEC = {1970,1,1};
+
+                scanf("%d-%d-%d %d-%d%d", &START.Rok, &START.Miesiac, &START.Dzien, &KONIEC.Rok, &KONIEC.Miesiac, &KONIEC.Dzien);
+
+                int start = DateToUnix(START);
+                int koniec = DateToUnix(KONIEC);
+
+                Wypisz_Wydatki(Wybraniec, start, koniec);
+                continue;
+            }
+                
+        }
         
     }
 }
@@ -226,7 +268,8 @@ void Events_Menu(struct Uzytkownik Wybraniec)
     while(1)
     {
         system("clear");
-        WypiszUser(Wybraniec);
+        WypiszUser(&Wybraniec);
+
         
         printf("[-1] Wróć\n");
         printf("[0] Wypisz wszystkie definicje wydatków\n");
@@ -251,23 +294,16 @@ void Events_Menu(struct Uzytkownik Wybraniec)
             continue;
         }
                     
-        if(D == 2) // JAKTO JEST TO CRUSHUJE WTF?
+        if(D == 2)
         {
             struct Uzytkownik* pomocnik = &Wybraniec;
             DodajEvent_Events(pomocnik, sciezka_zapisu);
             Wybraniec = *pomocnik;
             continue;
         }
-        if(D == 3)
-        {
-            printf("XDDD");
-        }
-            
-        
-//        if(D < -1 || D > 1)
-//            printf("BLAD");
+      
     }
-    //Select_User_Menu(Wybraniec);
+    
 }
 
 

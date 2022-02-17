@@ -23,7 +23,7 @@ struct Users{
 };
 
 void INIT(const char * slowo[]);
-void WypiszUser(struct Uzytkownik Wybraniec);
+void WypiszUser(struct Uzytkownik* Wybraniec);
 void Select_User(int index, struct Users UsersList, char* sciezka_zapisu);
 void get_user(const char path[], char** user);
 void add_user(char* user, int index);

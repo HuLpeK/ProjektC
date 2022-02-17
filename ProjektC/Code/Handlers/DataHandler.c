@@ -34,8 +34,7 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
     {
         if(VECTOR_SIZE(Wybraniec->Dzien[i]) != 0)
         {
-            struct Date Datka;
-            Datka = UnixToDate(i);
+    
 //            fprintf(fp, "%d-%d-%d ", Datka.Rok, Datka.Miesiac, Datka.Dzien);
             fprintf(fp, "%d ", i);
             for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); i++)
@@ -43,7 +42,9 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
                 fprintf(fp, "%d-%d; ", Wydateczek->ID, Wydateczek->koszt);
             }
+//            fprintf(fp, "\n");
         }
+        
     }
     
     fclose(fp);
@@ -251,7 +252,7 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     Wydateczek->ID = pomoc1;
     
     VECTOR_ADD(Wybraniec.Dzien[Dzionek], Wydateczek);
-    SaveFiles(&Wybraniec, Path);
+//    SaveFiles(&Wybraniec, Path);
     
     *A = Wybraniec;
 }
