@@ -352,14 +352,6 @@ void Create_user(void)
 
 
 int main(int argc, const char * argv[]) {
-    Date pomocnik;
-    Date Uro = {2002,02,04};
-    pomocnik = UnixToDate(11722);
-    
-    printf("%d-%d-%d || %d", pomocnik.Rok, pomocnik.Miesiac, pomocnik.Dzien, DateToUnix(Uro));
-    
-    exit(0);
-    
     UsersList.number_of_users = argc;
     INIT(argv);
     

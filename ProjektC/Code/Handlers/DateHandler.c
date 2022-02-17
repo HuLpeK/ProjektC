@@ -18,27 +18,28 @@ Date UnixToDate(int Dni)
 {
     Date x = {1970,1,1};
        
-//
-    while(Dni >= (isLeap(x.Rok) ? 365:366))
+
+    while(Dni >= (isLeap(x.Rok) ? 366:365))
     {
-        Dni -= isLeap(x.Rok) ? 365:366;
+        Dni -= isLeap(x.Rok) ? 366:365;
         x.Rok++;
     }
-        
 
     int MO_LEN[13] = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    
+
     if(isLeap(x.Rok))
         MO_LEN[2]++;
 
     for(int i = 1; i <= 12 && Dni > 0; i++)
     {
-        if(Dni-MO_LEN[i] >= 0)
-            Dni -= MO_LEN[i];
+        if(Dni-MO_LEN[i] < 0)
+            break;
+        Dni -= MO_LEN[i];
     }
-    
+
     x.Dzien += Dni;
     
+
     return x;
 }
 
