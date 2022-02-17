@@ -55,12 +55,6 @@ int DateToUnix(Date Data)
     
     int MO_LEN[13] = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     
-    DNI += Data.Dzien - x.Dzien;
-    for(int i = 1; 1 <= 12 && x.Miesiac != Data.Miesiac; i++)
-    {
-        DNI += MO_LEN[i];
-        x.Miesiac++;
-    }
     
     for(; x.Rok != Data.Rok; x.Rok++)
     {
@@ -68,6 +62,17 @@ int DateToUnix(Date Data)
             DNI++;
         DNI+=365;
     }
+    
+   if(isLeap(x.Rok))
+       MO_LEN[2]++;
+    
+    for(int i = 1; 1 <= 12 && x.Miesiac != Data.Miesiac; i++)
+    {
+        DNI += MO_LEN[i];
+        x.Miesiac++;
+    }
+    
+    DNI += Data.Dzien - x.Dzien;
     
     return DNI;
 }
