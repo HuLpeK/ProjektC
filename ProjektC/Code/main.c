@@ -44,6 +44,7 @@ void INIT(const char* slowo[])
         char* help;
         get_user(slowo[i], &help);
         add_user(help, i);
+        free(help);
     }
 }
 
@@ -212,10 +213,10 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
             break;
         
         if(D == 0)
-            Dodaj_Wydatek(Wybraniec, sciezka_zapisu);
+            Dodaj_Wydatek(&Wybraniec, sciezka_zapisu);
         
         if(D == 1)
-            Wypisz_Wydatki(0,50000);
+            Wypisz_Wydatki(Wybraniec,0,49999);
         
     }
 }

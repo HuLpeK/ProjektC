@@ -93,35 +93,58 @@ struct Uzytkownik ReadFiles(char* Path)
     
     fp = fopen(help, "r");
     
-    while(1)
-    {
-        int dzien;
-        int ID = 0;
-        int koszt = 0;
-        char* IDs = (char*)calloc(256, sizeof(char));
-        char* koszts = (char*)calloc(256, sizeof(char));
-        dzien = fscanf(fp, "%d", &dzien);
-        if(dzien == EOF)
-            break;
-        while(!(IDs != "\n" || IDs != EOF || koszts != "\n" || koszts != EOF))
-        {
-            fscanf(fp, "%s-%s;", &IDs, &koszts);
-            ID = atoi(IDs);
-            koszt = atoi(koszts);
-            struct Wydatek* pomoc = (struct Wydatek*)malloc(sizeof(struct Wydatek));
-            pomoc->ID = ID;
-            pomoc->koszt = koszt;
-            VECTOR_ADD((wybraniec.Dzien[dzien]), pomoc);
-        }
-        
-//        free(IDs);
-//        free(koszts);
-    }
+//    while(1)
+//    {
+//        int dzien;
+//        int ID = 0;
+//        int koszt = 0;
+//        char* IDs = (char*)calloc(256, sizeof(char));
+//        char* koszts = (char*)calloc(256, sizeof(char));
+//        dzien = fscanf(fp, "%d", &dzien);
+//        if(dzien == EOF)
+//            break;
+//        while(!(IDs != "\n" || IDs != EOF || koszts != "\n" || koszts != EOF))
+//        {
+//            fscanf(fp, "%s-%s;", &IDs, &koszts);
+//            ID = atoi(IDs);
+//            koszt = atoi(koszts);
+//            struct Wydatek* pomoc = (struct Wydatek*)malloc(sizeof(struct Wydatek));
+//            pomoc->ID = ID;
+//            pomoc->koszt = koszt;
+//            VECTOR_ADD((wybraniec.Dzien[dzien]), pomoc);
+//        }
+//
+////        free(IDs);
+////        free(koszts);
+//    }
     
     
     fclose(fp);
     
     return  wybraniec;
+}
+
+void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
+{
+    for(int i = START; i <= KONIEC; i++)
+    {
+        
+//        printf("%d", VECTOR_SIZE(Wybraniec.Dzien[i]));
+        for(int j = 0; j < VECTOR_SIZE(Wybraniec.Dzien[i]); j++)
+        {
+            Date Datka = UnixToDate(i);
+            struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec.Dzien[i], struct Wydatek*, j);
+            char* Evencik = VECTOR_GET(Wybraniec.Events.Array , char*, Wydateczek->ID);
+            char pomocnik[256];
+            strcpy(pomocnik, Evencik);
+            pomocnik[strlen(pomocnik)-1] = '\0';
+            printf("%d-%d-%d: %s %d\n", Datka.Rok, Datka.Miesiac, Datka.Dzien, pomocnik, Wydateczek->koszt);
+        }
+    }
+    
+    printf("<Kliknij Cokolwiek By Wrócić>\n");
+    char ch;
+    scanf("\n%c", &ch);
 }
 
 void Wypisz_Events(struct Uzytkownik Wybraniec)
@@ -195,23 +218,25 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
 }
 
 
-void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[])
+void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
 {
+    struct Uzytkownik Wybraniec = *A;
     system("clear");
     
     printf("Podaj Date w której chcesz dodać wydatek: [RRRR-MM-DD]\n");
     
-    int Rok,Miesiac,Dzien;
-    scanf("%d-%d-%d", &Rok, &Miesiac, &Dzien);
+    int Rok,Miesiac,Dzionek;
+    Rok = -1; Miesiac = -1; Dzionek = -1;
+    scanf("%d-%d-%d", &Rok, &Miesiac, &Dzionek);
           
-    Date Data = {Rok,Miesiac,Dzien};
+    Date Data = {Rok,Miesiac,Dzionek};
     if(!CheckDate(Data))
     {
         printf("Błąd podania daty!\n");
         return;
     }
     
-    Dzien = DateToUnix(Data);
+    Dzionek = DateToUnix(Data);
     
     struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
     
@@ -231,8 +256,10 @@ void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[])
     
     Wydateczek->ID = pomoc1;
     
-    VECTOR_ADD(Wybraniec.Dzien[Dzien], Wydateczek);
+    VECTOR_ADD(Wybraniec.Dzien[Dzionek], Wydateczek);
     SaveFiles(&Wybraniec, Path);
+    
+    *A = Wybraniec;
 }
 
 

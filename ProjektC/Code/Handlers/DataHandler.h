@@ -45,8 +45,9 @@ struct Uzytkownik{
 void SaveFiles(struct Uzytkownik* Wybraniec, char Path[]);
 struct Uzytkownik InitUser(void);
 struct Uzytkownik ReadFiles(char* Path);
+void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[]);
 void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
-void Dodaj_Wydatek(struct Uzytkownik Wybraniec, char Path[]);
+void Dodaj_Wydatek(struct Uzytkownik* A, char Path[]);
 #endif /* DataHandler_h */
