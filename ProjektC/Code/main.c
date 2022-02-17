@@ -249,7 +249,7 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
                 Date START = {1970,1,1};
                 Date KONIEC = {1970,1,1};
 
-                scanf("%d-%d-%d %d-%d%d", &START.Rok, &START.Miesiac, &START.Dzien, &KONIEC.Rok, &KONIEC.Miesiac, &KONIEC.Dzien);
+                scanf("%d-%d-%d %d-%d-%d", &START.Rok, &START.Miesiac, &START.Dzien, &KONIEC.Rok, &KONIEC.Miesiac, &KONIEC.Dzien);
 
                 int start = DateToUnix(START);
                 int koniec = DateToUnix(KONIEC);

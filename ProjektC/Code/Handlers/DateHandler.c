@@ -90,6 +90,5 @@ int CheckDate(Date Data)
     if(MO_LEN[Data.Miesiac] < Data.Dzien)
         return 0;
     
-    
     return 1;
 }

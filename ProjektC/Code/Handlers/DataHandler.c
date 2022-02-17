@@ -40,7 +40,7 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
             for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); i++)
             {
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
-                fprintf(fp, "%d-%lf; ", Wydateczek->ID, Wydateczek->koszt);
+                fprintf(fp, "%d#%lf; ", Wydateczek->ID, Wydateczek->koszt);
             }
             fprintf(fp, "\n");
         }
@@ -102,7 +102,7 @@ struct Uzytkownik ReadFiles(char* Path)
             break;
         int* ID = (int*)malloc(sizeof(int));
         double* koszt = (double*)malloc(sizeof(double));
-        while(fscanf(fp, " %d-%lf;", ID, koszt))
+        while(fscanf(fp, " %d#%lf;", ID, koszt))
         {
             if(feof(fp))
                 break;
@@ -218,7 +218,7 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
     struct Uzytkownik Wybraniec = *A;
     system("clear");
     
-    printf("Podaj Date w której chcesz dodać wydatek:\n[RRRR-MM-DD]\n");
+    printf("Podaj Date w której chcesz dodać wydatek:\nRRRR-MM-DD\n");
     
     int Rok,Miesiac,Dzionek;
     Rok = -1; Miesiac = -1; Dzionek = -1;
