@@ -1,9 +1,6 @@
-//
-//  CreateFileHandler.c
-//  ProjektC
-//
-//  Created by Hubert Kulpaczyński on 08/01/2022.
-//
+/// Projekt Programistyczny System Zarządzania Budżetem Studenta
+/// Autor: Hubert Kulpaczyński 330840
+/// Uczelnia: Instytut Informatyki Uniwerstytetu Wrocławskiego
 
 #include "CreateFileHandler.h"
 

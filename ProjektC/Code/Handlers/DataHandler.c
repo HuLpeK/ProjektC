@@ -1,9 +1,6 @@
-//
-//  DataHandler.c
-//  ProjektC
-//
-//  Created by Hubert Kulpaczyński on 06/01/2022.
-//
+/// Projekt Programistyczny System Zarządzania Budżetem Studenta
+/// Autor: Hubert Kulpaczyński 330840
+/// Uczelnia: Instytut Informatyki Uniwerstytetu Wrocławskiego
 
 #include "DataHandler.h"
 
@@ -124,8 +121,6 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
 {
     for(int i = START; i <= KONIEC; i++)
     {
-        
-//        printf("%d", VECTOR_SIZE(Wybraniec.Dzien[i]));
         for(int j = 0; j < VECTOR_SIZE(Wybraniec.Dzien[i]); j++)
         {
             Date Datka = UnixToDate(i);
@@ -224,15 +219,9 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
             return;
         }
     }
-        
-           
-    
+          
     VECTOR_ADD(Wybraniec.Events.Array, tmp);
     
-    
-//    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
-//        printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
-//
     SaveFiles(&Wybraniec, Path);
     
     *A = Wybraniec;

@@ -1,11 +1,8 @@
-//
-//  main.c
-//  ProjektC
-//
-//  Created by Hubert Kulpaczyński on 06/01/2022.
-//
-/// DODAWANIE CYKLICZNE
-/// Zestawienie do pliku B) 
+/// Projekt Programistyczny System Zarządzania Budżetem Studenta
+/// Autor: Hubert Kulpaczyński 330840
+/// Uczelnia: Instytut Informatyki Uniwerstytetu Wrocławskiego
+
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -142,7 +139,6 @@ void DelUser_Menu(void)
             select_menu();
         }
     }
-    //select_menu();
 }
 
 
@@ -172,7 +168,6 @@ void Select_User_Menu(struct Uzytkownik* Wybraniec)
     while(1)
     {
         system("clear");
-    //    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
         WypiszUser(Wybraniec);
 
 

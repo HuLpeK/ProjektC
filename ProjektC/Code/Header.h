@@ -1,9 +1,6 @@
-//
-//  Header.h
-//  ProjektC
-//
-//  Created by Hubert Kulpaczyński on 06/01/2022.
-//
+/// Projekt Programistyczny System Zarządzania Budżetem Studenta
+/// Autor: Hubert Kulpaczyński 330840
+/// Uczelnia: Instytut Informatyki Uniwerstytetu Wrocławskiego
 
 #ifndef Header_h
 #define Header_h
@@ -12,7 +9,7 @@
 #include "./Handlers/DataHandler.h"
 #include "./Handlers/CreateFileHandler.h"
 #include "./Handlers/Vector.h"
-//#include "./Handlers/SaveFileHandler.h"
+
 
 #define MAX_USER 256
 
