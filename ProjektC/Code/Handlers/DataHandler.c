@@ -34,15 +34,12 @@ void SaveFiles(struct Uzytkownik* Wybraniec, char Path[])
     {
         if(VECTOR_SIZE(Wybraniec->Dzien[i]) != 0)
         {
-    
-//            fprintf(fp, "%d-%d-%d ", Datka.Rok, Datka.Miesiac, Datka.Dzien);
-            fprintf(fp, "%d ", i);
-            for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); i++)
+                
+            for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); j++)
             {
                struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
-                fprintf(fp, "%d#%lf; ", Wydateczek->ID, Wydateczek->koszt);
+                fprintf(fp, "%d %d#%lf;\n",i, Wydateczek->ID, Wydateczek->koszt);
             }
-            fprintf(fp, "\n");
         }
         
     }
@@ -95,22 +92,26 @@ struct Uzytkownik ReadFiles(char* Path)
     
     fp = fopen(help, "r");
         
-    int dzien = -1;
-    while(fscanf(fp, "%d", &dzien))
+    
+    while(1)
     {
-        if(feof(fp))
-            break;
+        int* dzien = (int*)malloc(sizeof(int));
         int* ID = (int*)malloc(sizeof(int));
         double* koszt = (double*)malloc(sizeof(double));
-        while(fscanf(fp, " %d#%lf;", ID, koszt))
+        fscanf(fp, "%d %d#%lf;\n", dzien, ID, koszt);
+        if(feof(fp))
         {
-            if(feof(fp))
-                break;
-            struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
-            Wydateczek->ID = *ID;
-            Wydateczek->koszt = *koszt;
-            VECTOR_ADD(wybraniec.Dzien[dzien], Wydateczek);
+            free(dzien);
+            free(ID);
+            free(koszt);
+            break;
         }
+            
+        struct Wydatek* Wydateczek = (struct Wydatek*)malloc(sizeof(struct Wydatek));
+        Wydateczek->ID = *ID;
+        Wydateczek->koszt = *koszt;
+        VECTOR_ADD(wybraniec.Dzien[*dzien], Wydateczek);
+        
     }
     
     
