@@ -35,6 +35,7 @@ Date UnixToDate(int Dni)
         if(Dni-MO_LEN[i] < 0)
             break;
         Dni -= MO_LEN[i];
+        x.Miesiac++;
     }
 
     x.Dzien += Dni;

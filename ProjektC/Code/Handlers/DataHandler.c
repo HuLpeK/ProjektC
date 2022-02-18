@@ -137,12 +137,12 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
             char Miesiac[3];
             char Dzien[3];
             
-            Miesiac[0] = Datka.Miesiac/10+'0';
-            Miesiac[1] = Datka.Miesiac%10+'0';
+            Miesiac[0] = (char)Datka.Miesiac/10+'0';
+            Miesiac[1] = (char)Datka.Miesiac%10+'0';
             Miesiac[2] = '\0';
             
-            Dzien[0] = Datka.Dzien/10+'0';
-            Dzien[1] = Datka.Miesiac%10+'0';
+            Dzien[0] = (char)Datka.Dzien/10+'0';
+            Dzien[1] = (char)Datka.Dzien%10+'0';
             Dzien[2] = '\0';
             
             printf("%d-%s-%s:%s:%.2fzł\n", Datka.Rok, Miesiac, Dzien, pomocnik, Wydateczek->koszt);
