@@ -312,7 +312,7 @@ void Usun_Wydatek(struct Uzytkownik* Wybraniec, char Path[])
     
 }
 
-void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIEC, int stan)
+void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIEC,const int stan)
 {
     FILE* fp;
     char user_path[strlen(Path)+strlen(Wybraniec->Name)+strlen("Events")+2];
@@ -342,6 +342,8 @@ void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIE
             }
         }
     }
+    if(stan != 0 && stan != 1)
+        return;
     
     for(int i = START; i <= KONIEC; i++)
     {
@@ -368,25 +370,29 @@ void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIE
             fprintf(fp, "%d-%s-%s:%s:%.2lfzł\n", Datka.Rok, Miesiac, Dzionek, pomocnik, Wydateczek->koszt);
         }
     }
+    if(stan != 0)
+        fclose(fp);
+    
+    
+    if(stan == 0)
+    {
+        printf("<Kliknij Cokolwiek By Wrócić>\n");
+        char ch;
+        scanf("\n%c", &ch);
+    }
     
     if(stan == 1)
     {
         printf("Wygenerowanie zestawienie do pliku: %s\n", used_path);
-        
         int TIMEOUT = 5;
         while (TIMEOUT--) {
             printf("Powrót za %d!\n", TIMEOUT);
             sleep(1);
         }
+        return;
     }
+
     
-    if(stan == 0)
-    {
-        printf("\n\n Wygenerowano zestawienie kliknij cokolwiek by wrócić!\n");
-        char c;
-        scanf("\n%c", &c);
-    }
-    fclose(fp);
 }
 
 double Suma_Wydatki(struct Uzytkownik* Wybraniec, int START, int KONIEC)
