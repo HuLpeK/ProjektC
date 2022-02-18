@@ -5,11 +5,11 @@
 #Dokumentacja Programisty
 
 
-Kod znajduje się w scieżce *src/* 
+Kod znajduje się w scieżce *ProjektC/* 
 
-1. src/Code/main.c
+1. ProjektC/Code/main.c
 	* Wszystkie Menu
-2. src/Code/Handlers
+2. ProjektC/Code/Handlers
 	1. DateHandler
 		* Obsługa zapytań i operacji na datach.
 		* Daty zapisywane są w formie ilości dni których ubyło od 01-01-1970 (ten dzień to dzień '0').
