@@ -1,8 +1,10 @@
 
-##S10: System Zarządzania Budżetem Studenta
+## S10: System Zarządzania Budżetem Studenta
 	Projekt korzysta z kompilatora GCC do budowania.
+	Aby zbudować wpisz: build.sh
+	Aby Zbudować i Uruchomić Wpisz: build-and-run.sh
 
-#Dokumentacja Programisty
+# Dokumentacja Programisty
 
 
 Kod znajduje się w scieżce *ProjektC/* 
