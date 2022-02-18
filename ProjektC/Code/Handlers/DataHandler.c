@@ -399,3 +399,19 @@ void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIE
     }
     fclose(fp);
 }
+
+double Suma_Wydatki(struct Uzytkownik* Wybraniec, int START, int KONIEC)
+{
+    double SUMA = 0;
+    
+    for(int i = START; i <= KONIEC; i++)
+    {
+        for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); j++)
+        {
+            struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
+            SUMA += Wydateczek->koszt;
+        }
+    }
+    
+    return SUMA;
+}

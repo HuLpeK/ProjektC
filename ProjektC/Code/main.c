@@ -257,6 +257,7 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
         printf("[0] Dodaj Wydatek\n");
         printf("[1] Wypisz Wydatki\n");
         printf("[2] Usuń Wydatek\n");
+        printf("[3] Bilans Wydatków\n");
         
         int D;
         scanf("%d", &D);
@@ -268,7 +269,7 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
         {
             system("clear");
             WypiszUser(Wybraniec);
-            int CYKL = 0;
+            int CYKL = 1;
             int INTERVAL = 0;
             
             printf("[-1] Wróć\n");
@@ -277,6 +278,7 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
             
             int D1;
             scanf("%d", &D1);
+
             if(D1 == 1)
             {
                 printf("Interwał:\n");
@@ -299,7 +301,7 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
             printf("[0] Całym\n");
             printf("[1] Zdefiniowanym\n");
 
-            int D1 = -2;
+            int D1;
             scanf("%d", &D1);
 
 
@@ -327,6 +329,49 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
         
         if(D == 2)
             Usun_Wydatek(Wybraniec, sciezka_zapisu);
+        
+        if(D == 3)
+        {
+            system("clear");
+            WypiszUser(Wybraniec);
+
+            printf("W jakim Okresie?\n");
+            printf("[-1] Wróć\n");
+            printf("[0] Całym\n");
+            printf("[1] Zdefiniowanym\n");
+
+            int D1 = -2;
+            scanf("%d", &D1);
+
+
+            if(D1 == -1)
+                continue;
+            double wartosc = 0;
+            if(D1 != 0 && D1 != 1)
+                continue;
+            if(D1 == 0)
+                wartosc = Suma_Wydatki(Wybraniec, 0, 49999);
+
+            if(D1 == 1)
+            {
+                printf("Podaj Datę poczatkową i końca, daty będą użyte włącznie\n[RRRR-MM-DD RRRR-MM-DD]\n");
+                Date START = {1970,1,1};
+                Date KONIEC = {1970,1,1};
+
+                scanf("%d-%d-%d %d-%d-%d", &START.Rok, &START.Miesiac, &START.Dzien, &KONIEC.Rok, &KONIEC.Miesiac, &KONIEC.Dzien);
+
+                int start = DateToUnix(START);
+                int koniec = DateToUnix(KONIEC);
+
+                wartosc = Suma_Wydatki(Wybraniec, start, koniec);
+            }
+            
+            printf("\nBilans Wynosi: %.2lfzł\n", wartosc);
+            
+            printf("\n\n Wygenerowano zestawienie kliknij cokolwiek by wrócić!\n");
+            char c;
+            scanf("\n%c", &c);
+        }
         
         
     }
