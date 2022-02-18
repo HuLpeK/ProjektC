@@ -133,7 +133,18 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
             char pomocnik[256];
             strcpy(pomocnik, Evencik);
             pomocnik[strlen(pomocnik)-1] = '\0';
-            printf("%d-%d-%d: %.20s %.2fzł\n", Datka.Rok, Datka.Miesiac, Datka.Dzien, pomocnik, Wydateczek->koszt);
+            char Miesiac[3];
+            char Dzien[3];
+            
+            Miesiac[0] = Datka.Miesiac/10+'0';
+            Miesiac[1] = Datka.Miesiac%10+'0';
+            Miesiac[2] = '\0';
+            
+            Dzien[0] = Datka.Dzien/10+'0';
+            Dzien[1] = Datka.Miesiac%10+'0';
+            Dzien[2] = '\0';
+            
+            printf("%d-%s-%s:%s:%.2fzł\n", Datka.Rok, Miesiac, Dzien, pomocnik, Wydateczek->koszt);
         }
     }
     
