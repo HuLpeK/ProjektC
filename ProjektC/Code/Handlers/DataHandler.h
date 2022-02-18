@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <unistd.h>
 #include "./Vector.h"
 #include "./DateHandler.h"
 #define ARRAY_SIZE 50000
@@ -51,4 +52,5 @@ void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[]);
 void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
 void Dodaj_Wydatek(struct Uzytkownik* A, char Path[]);
 void Usun_Wydatek(struct Uzytkownik* Wybraniec, char Path[]);
+void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIEC, int stan);
 #endif /* DataHandler_h */

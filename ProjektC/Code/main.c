@@ -193,8 +193,55 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
         
         if(D == 1)
             Events_Menu(Wybraniec);
+        
+        if(D == 2)
+            Zestawienie_Menu(&Wybraniec);
     }
     //select_menu();
+}
+
+void Zestawienie_Menu(struct Uzytkownik* Wybraniec)
+{
+    while(1)
+    {
+        system("clear");
+        WypiszUser(Wybraniec);
+        
+        printf("[-1] Wróć\n");
+        printf("[0] Zestawienie Do Terminala\n");
+        printf("[1] Zestawienie Do Pliku\n");
+        
+        int D;
+        scanf("%d", &D);
+        
+        if(D == -1)
+            break;
+        if(D != -1 && D != 0 && D != 1)
+            continue;
+        
+        system("clear");
+        WypiszUser(Wybraniec);
+        printf("[0] Zestawienie z całego okresu\n");
+        printf("[1] Zestawienie z zadanego zakresu\n");
+        
+        int D1;
+        scanf("%d", &D1);
+        
+        int START = 0;
+        int KONIEC = 49999;
+        
+        if(D1 == 1)
+        {
+            printf("Podaj date początku i końca (obustronnie włącznie)\n RRRR-MM-DD RRRR-MM-DD");
+            Date x;
+            Date y;
+            scanf("%d-%d-%d %d-%d-%d", &x.Rok, &x.Miesiac, &x.Dzien, &y.Rok, &y.Miesiac, &y.Dzien);
+            START = DateToUnix(x);
+            KONIEC = DateToUnix(y);
+        }
+        Zestawienie(Wybraniec, sciezka_zapisu, START, KONIEC, D);
+                       
+    }
 }
 
 void Wydatek_Menu(struct Uzytkownik Wybraniec)
@@ -261,9 +308,8 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
         }
         
         if(D == 2)
-        {
             Usun_Wydatek(&Wybraniec, sciezka_zapisu);
-        }
+        
         
     }
 }

@@ -29,6 +29,7 @@ void get_user(const char path[], char** user);
 void add_user(char* user, int index);
 void Select_User(int index, struct Users UsersList, char* sciezka_zapisu);
 void Select_User_Menu(struct Uzytkownik Wybraniec);
+void Zestawienie_Menu(struct Uzytkownik* Wybraniec);
 void Wydatek_Menu(struct Uzytkownik Wybraniec);
 void Events_Menu(struct Uzytkownik Wybraniec);
 void select_menu(void);

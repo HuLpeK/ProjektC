@@ -319,4 +319,79 @@ void Usun_Wydatek(struct Uzytkownik* Wybraniec, char Path[])
     
 }
 
+void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIEC, int stan)
+{
+    FILE* fp;
+    char user_path[strlen(Path)+strlen(Wybraniec->Name)+strlen("Events")+2];
+    strcpy(user_path,Path);
+    strcat(user_path, Wybraniec->Name);
+    strcat(user_path, "/");
+    
+    char used_path[strlen(Path)+strlen(Wybraniec->Name)+strlen("Events")+2];
 
+    strcpy(used_path, user_path);
+    strcat(used_path, "Zestawienie.txt");
+    
+    if(stan == 0)
+        fp = stdout;
+    if(stan == 1)
+    {
+        fp = fopen(used_path, "w");
+        
+        if(fp == NULL)
+        {
+            printf("Blad Generalnei Zestawienia\n");
+            int timeout = 5;
+            while(timeout--)
+            {
+                printf("Powrót za %d", timeout);
+                sleep(1);
+            }
+        }
+    }
+    
+    for(int i = START; i <= KONIEC; i++)
+    {
+        for(int j = 0; j < VECTOR_SIZE(Wybraniec->Dzien[i]); j++)
+        {
+            struct Wydatek* Wydateczek = VECTOR_GET(Wybraniec->Dzien[i], struct Wydatek*, j);
+            char* Evencior = VECTOR_GET(Wybraniec->Events.Array, char*, Wydateczek->ID);
+            char pomocnik[256];
+            strcpy(pomocnik, Evencior);
+            pomocnik[strlen(pomocnik)-1] = '\0';
+            
+            Date Datka = UnixToDate(i);
+            char Miesiac[3];
+            char Dzionek[3];
+            
+            Miesiac[0] = Datka.Miesiac/10+'0';
+            Miesiac[1] = Datka.Miesiac%10+'0';
+            Miesiac[2] = '\0';
+            
+            Dzionek[0] = Datka.Dzien/10+'0';
+            Dzionek[1] = Datka.Miesiac%10+'0';
+            Dzionek[2] = '\0';
+            
+            fprintf(fp, "%d-%s-%s:%s:%.2lfzł\n", Datka.Rok, Miesiac, Dzionek, pomocnik, Wydateczek->koszt);
+        }
+    }
+    
+    if(stan == 1)
+    {
+        printf("Wygenerowanie zestawienie do pliku: %s\n", used_path);
+        
+        int TIMEOUT = 5;
+        while (TIMEOUT--) {
+            printf("Powrót za %d!\n", TIMEOUT);
+            sleep(1);
+        }
+    }
+    
+    if(stan == 0)
+    {
+        printf("\n\n Wygenerowano zestawienie kliknij cokolwiek by wrócić!\n");
+        char c;
+        scanf("\n%c", &c);
+    }
+    fclose(fp);
+}
