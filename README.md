@@ -1,5 +1,6 @@
 
 ##S10: System Zarządzania Budżetem Studenta
+	Projekt korzysta z kompilatora GCC do budowania.
 
 #Dokumentacja Programisty
 
