@@ -239,7 +239,7 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
 }
 
 
-void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
+void Dodaj_Wydatek(struct Uzytkownik* A, char Path[], int CYKL, int INTERVAL)
 {
     struct Uzytkownik Wybraniec = *A;
     system("clear");
@@ -281,8 +281,12 @@ void Dodaj_Wydatek(struct Uzytkownik* A, char Path[])
         return;
     }
     Wydateczek->ID = pomoc1;
-    
-    VECTOR_ADD(Wybraniec.Dzien[Dzionek], Wydateczek);
+   
+    for(int i = 0; i < CYKL; i++)
+    {
+        VECTOR_ADD(Wybraniec.Dzien[Dzionek], Wydateczek);
+        Dzionek += INTERVAL;
+    }
     SaveFiles(&Wybraniec, Path);
     
     *A = Wybraniec;

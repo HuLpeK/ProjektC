@@ -50,7 +50,7 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC);
 void Wypisz_Events(struct Uzytkownik Wybraniec);
 void ZmienNazwe_Events(struct Uzytkownik Wybraniec, char Path[]);
 void DodajEvent_Events(struct Uzytkownik* A, char Path[]);
-void Dodaj_Wydatek(struct Uzytkownik* A, char Path[]);
+void Dodaj_Wydatek(struct Uzytkownik* A, char Path[], int CYKL, int INTERVAL);
 void Usun_Wydatek(struct Uzytkownik* Wybraniec, char Path[]);
 void Zestawienie(struct Uzytkownik* Wybraniec, char Path[], int START, int KONIEC, int stan);
 #endif /* DataHandler_h */

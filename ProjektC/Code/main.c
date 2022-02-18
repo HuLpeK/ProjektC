@@ -266,7 +266,25 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
         
         if(D == 0)
         {
-            Dodaj_Wydatek(&Wybraniec, sciezka_zapisu);
+            system("clear");
+            WypiszUser(&Wybraniec);
+            int CYKL = 0;
+            int INTERVAL = 0;
+            
+            printf("[-1] Wróć\n");
+            printf("[0] Dodaj W Pojedyńczo\n");
+            printf("[1] Dodaj W Serii\n");
+            
+            int D1;
+            scanf("%d", &D1);
+            if(D1 == 1)
+            {
+                printf("Interwał:\n");
+                scanf("%d", &INTERVAL);
+                printf("Ilość Powtórzeń:\n");
+                scanf("%d", &CYKL);
+            }
+            Dodaj_Wydatek(&Wybraniec, sciezka_zapisu, CYKL, INTERVAL);
             continue;
         }
             
