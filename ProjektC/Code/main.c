@@ -258,7 +258,11 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
                 Wypisz_Wydatki(Wybraniec, start, koniec);
                 continue;
             }
-                
+        }
+        
+        if(D == 2)
+        {
+            Usun_Wydatek(&Wybraniec, sciezka_zapisu);
         }
         
     }
