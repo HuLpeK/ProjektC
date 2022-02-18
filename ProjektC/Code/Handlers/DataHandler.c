@@ -145,7 +145,7 @@ void Wypisz_Wydatki(struct Uzytkownik Wybraniec, int START, int KONIEC)
             Dzien[1] = (char)Datka.Dzien%10+'0';
             Dzien[2] = '\0';
             
-            printf("%d-%s-%s:%s:%.2fzł\n", Datka.Rok, Miesiac, Dzien, pomocnik, Wydateczek->koszt);
+            printf("%d-%s-%s  %5s  %.2fzł\n", Datka.Rok, Miesiac, Dzien, pomocnik, Wydateczek->koszt);
         }
     }
     
