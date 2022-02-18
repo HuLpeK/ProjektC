@@ -363,7 +363,7 @@ void Wydatek_Menu(struct Uzytkownik* Wybraniec)
             
             printf("\nBilans Wynosi: %.2lfzł\n", wartosc);
             
-            printf("\n\n Wygenerowano zestawienie kliknij cokolwiek by wrócić!\n");
+            printf("<kliknij cokolwiek by wrócić!>\n");
             char c;
             scanf("\n%c", &c);
         }
