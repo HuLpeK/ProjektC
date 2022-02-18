@@ -4,7 +4,8 @@
 //
 //  Created by Hubert Kulpaczyński on 06/01/2022.
 //
-
+/// DODAWANIE CYKLICZNE
+/// Zestawienie do pliku B) 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

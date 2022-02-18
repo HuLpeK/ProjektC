@@ -213,12 +213,26 @@ void DodajEvent_Events(struct Uzytkownik* A, char Path[])
     scanf("\n%[^\n]%*c", tmp);
 
     strcat(tmp, "\n");
+    
+    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+    {
+        char* pomocnik = VECTOR_GET(Wybraniec.Events.Array, char*, i);
+        if(strcmp(tmp, pomocnik) == 0)
+        {
+            *A = Wybraniec;
+            free(tmp);
+            return;
+        }
+    }
+        
+           
+    
     VECTOR_ADD(Wybraniec.Events.Array, tmp);
     
     
-    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
-        printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
-    
+//    for(int i = 0; i < VECTOR_SIZE(Wybraniec.Events.Array); i++)
+//        printf("%s", VECTOR_GET(Wybraniec.Events.Array, char*, i));
+//
     SaveFiles(&Wybraniec, Path);
     
     *A = Wybraniec;
