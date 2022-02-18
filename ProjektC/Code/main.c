@@ -164,16 +164,16 @@ void Select_User(int index, struct Users UsersList, char* sciezka_zapisu)
     Wybraniec = ReadFiles(used_path);
     Wybraniec.Name = user;
     
-    Select_User_Menu(Wybraniec);
+    Select_User_Menu(&Wybraniec);
 }
 
-void Select_User_Menu(struct Uzytkownik Wybraniec)
+void Select_User_Menu(struct Uzytkownik* Wybraniec)
 {
     while(1)
     {
         system("clear");
     //    printf("Nazwa Użytkownika: %s\n", Wybraniec.Name);
-        WypiszUser(&Wybraniec);
+        WypiszUser(Wybraniec);
 
 
         
@@ -195,7 +195,7 @@ void Select_User_Menu(struct Uzytkownik Wybraniec)
             Events_Menu(Wybraniec);
         
         if(D == 2)
-            Zestawienie_Menu(&Wybraniec);
+            Zestawienie_Menu(Wybraniec);
     }
     //select_menu();
 }
@@ -244,12 +244,12 @@ void Zestawienie_Menu(struct Uzytkownik* Wybraniec)
     }
 }
 
-void Wydatek_Menu(struct Uzytkownik Wybraniec)
+void Wydatek_Menu(struct Uzytkownik* Wybraniec)
 {
     while(1)
     {
         system("clear");
-        WypiszUser(&Wybraniec);
+        WypiszUser(Wybraniec);
 
 
         
@@ -267,7 +267,7 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
         if(D == 0)
         {
             system("clear");
-            WypiszUser(&Wybraniec);
+            WypiszUser(Wybraniec);
             int CYKL = 0;
             int INTERVAL = 0;
             
@@ -284,7 +284,7 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
                 printf("Ilość Powtórzeń:\n");
                 scanf("%d", &CYKL);
             }
-            Dodaj_Wydatek(&Wybraniec, sciezka_zapisu, CYKL, INTERVAL);
+            Dodaj_Wydatek(Wybraniec, sciezka_zapisu, CYKL, INTERVAL);
             continue;
         }
             
@@ -292,7 +292,7 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
         if(D == 1)
         {
             system("clear");
-            WypiszUser(&Wybraniec);
+            WypiszUser(Wybraniec);
 
             printf("W jakim Okresie?\n");
             printf("[-1] Wróć\n");
@@ -307,7 +307,7 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
                 continue;
 
             if(D1 == 0)
-                Wypisz_Wydatki(Wybraniec, 0, 49999);
+                Wypisz_Wydatki(*Wybraniec, 0, 49999);
 
             if(D1 == 1)
             {
@@ -320,24 +320,24 @@ void Wydatek_Menu(struct Uzytkownik Wybraniec)
                 int start = DateToUnix(START);
                 int koniec = DateToUnix(KONIEC);
 
-                Wypisz_Wydatki(Wybraniec, start, koniec);
+                Wypisz_Wydatki(*Wybraniec, start, koniec);
                 continue;
             }
         }
         
         if(D == 2)
-            Usun_Wydatek(&Wybraniec, sciezka_zapisu);
+            Usun_Wydatek(Wybraniec, sciezka_zapisu);
         
         
     }
 }
 
-void Events_Menu(struct Uzytkownik Wybraniec)
+void Events_Menu(struct Uzytkownik* Wybraniec)
 {
     while(1)
     {
         system("clear");
-        WypiszUser(&Wybraniec);
+        WypiszUser(Wybraniec);
 
         
         printf("[-1] Wróć\n");
@@ -353,21 +353,19 @@ void Events_Menu(struct Uzytkownik Wybraniec)
             break;
         if(D == 0)
         {
-            Wypisz_Events(Wybraniec);
-            continue;;
+            Wypisz_Events(*Wybraniec);
+            continue;
         }
             
         if(D == 1)
         {
-            ZmienNazwe_Events(Wybraniec, sciezka_zapisu);
+            ZmienNazwe_Events(*Wybraniec, sciezka_zapisu);
             continue;
         }
                     
         if(D == 2)
         {
-            struct Uzytkownik* pomocnik = &Wybraniec;
-            DodajEvent_Events(pomocnik, sciezka_zapisu);
-            Wybraniec = *pomocnik;
+            DodajEvent_Events(Wybraniec, sciezka_zapisu);
             continue;
         }
       
