@@ -6,6 +6,7 @@
 	Projekt korzysta z kompilatora GCC do budowania.
 	Aby zbudować wpisz: build.sh
 	Aby Zbudować i Uruchomić Wpisz: build-and-run.sh
+    Alternatywnie możesz użyć ./start.sh
 
 ## Dokumentacja Programisty
 
